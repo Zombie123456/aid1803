@@ -1,0 +1,1069 @@
+<body>
+<div class="header"><style>
+    #colorbox { z-index: 10; }
+
+    #colorbox:focus { outline: none; }
+
+    .cboxIframe { width: 100%; height: 100%; display: block; border: 0; padding: 0; margin: 0; }
+
+    #cboxContent #cboxClose { position: absolute; top: 12px; right: 24px; width: 18px; height: 18px; cursor: pointer; background: url("../../script/img_17/img_svip_17/l_icon_close1.png") no-repeat; text-indent: -999px; overflow: hidden; border: none }
+
+    #cboxOverlay { position: fixed; width: 100%; height: 100%; top: 0; background: rgba(0, 0, 0, 0.6); z-index: 10; }
+
+    /*登录注册页面关闭按钮样式*/
+    .l-170314-close { position: absolute; width: 18px; height: 18px; background: url(../../script/img_17/img_svip_17/l_icon_close1.png); top: 15px; right: 20px; cursor: pointer; z-index: 1; }
+
+    /*弹层-确认提交操作*/
+    .l-170227-10 .open-title { background: #00abe1; border-top-left-radius: 5px; border-top-right-radius: 5px; color: #fff; height: 42px; line-height: 42px; padding: 0 24px; }
+
+    .l-170227-10 .open-title span { float: right; margin-top: 12px; background: url(../../script/img_17/img_svip_17/l_icon_close.png) no-repeat; width: 18px; height: 18px; }
+
+    .l-170227-10 .open-cont { background: #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; padding: 0 24px 45px; }
+
+    .l-170227-10 .open-text { padding: 45px 7px 24px; text-align: center; line-height: 24px; }
+
+    .l-170227-10 .open-btn { text-align: center; }
+
+    .l-170227-10 .btn { display: inline-block; cursor: pointer; width: 123px; height: 43px; text-align: center; line-height: 43px; border: 1px solid #CCCCCC; margin: 0 15px; border-radius: 5px; }
+
+    .l-170227-10 .btn-default { background: #fff; color: #00ABE1; }
+
+    .l-170227-10 .btn-primary { background: #00ABE1; color: #fff; }
+    /* 20170803-cj */
+   .s-course{position: relative;}
+   .s-course:hover .user-nav{display: block;}
+   .s-course .user-nav{display: none; right: -25px;}
+   .s-course .user-nav a{width: 88px;}
+   
+    /* 20170908-cj */
+    .bar_170907{height: 30px;line-height: 30px;font-size: 12px;background-color: #000;color: #fff;}
+    .bar_170907 .i-icon{display: inline-block;margin-top: -3px;height: 16px;vertical-align: middle;}
+    .bar_170907 .bar-inline{display: inline-block;}
+    .bar_170907 .ts-dom{position: relative;}
+    .bar_170907 .ts-dom .bar-inline:first-child{margin-right: 10px;}
+    .bar_170907 .bar-rq{position: absolute;left: 50%;z-index: 99;display: none;margin-left: -65px;padding: 6px;width: 130px;background-color: #fff;color: #000;text-align: center;}
+    .bar_170907 .bar-rq>img{display: block;width: 100%;}
+    .bar_170907 .bar-rq>p{line-height: 20px;}
+    .bar_170907 .left-phone{float: left;}
+    .bar_170907 .left-phone .ic-phone{width: 17px;background: url(/script/img_v2/b_p_170907.png) no-repeat 0 0;}
+    .bar_170907 .rigth-rq{float: right;cursor: pointer;}
+    .bar_170907 .rigth-rq .ic-wx{width: 20px;background: url(/script/img_v2/b_w_170907.png) no-repeat 0 0;}
+    
+    .bar_170907 .cur-wx:hover .rq-wx{display: block;}
+    .bar_170907 .cur-fw:hover .rq-fw{display: block;}
+</style>
+<div class="head-box">
+    <div class="bar_170907">
+        <div class="container">
+            <div class="left-phone">
+                <i class="i-icon ic-phone"></i>
+                <span>电话咨询：15727392825</span>
+            </div>
+            <div class="rigth-rq ts-dom">
+                <div class="bar-inline cur-wx">
+                    <i class="i-icon ic-wx"></i>
+                    <span>官方微信号</span>
+                    <div class="bar-rq rq-wx">
+                        <img src="/script/img_v2/wx_code_170907.jpg">
+                        <p>获取最新课程资讯</p>
+                    </div>
+                </div>
+                <div class="bar-inline cur-fw">
+                    <i class="i-icon ic-wx"></i>
+                    <span>官方服务号</span>
+                    <div class="bar-rq rq-fw">
+                        <img src="/script/img_v2/fw_code_170907.jpg">
+                        <p>关注最新行业动态</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <a href="/web/index_new.html">
+            <div class="head-logo"></div>
+        </a>
+        <div class="course-search">
+            <input id="searchTextH" placeholder="您想学习的课程" type="text">
+            <button onclick="searchH()">搜索</button>
+        </div>
+        <div class="head-nav">
+            <ul>
+                <!-- <li><a href="">VIP</a></li> -->
+    
+                <li class="s-course" totag="series_course">
+                    <a>系列课</a>
+                    <ul class="user-nav">
+                        <li><a onclick="locationToHref('/web/series_course.html');">会员系列课</a></li>
+                        <li><a onclick="locationToHref('/web/classic/classic_course.html');">精品系列课</a></li>
+                    </ul>
+                    <!--<a onclick="locationToHref('/web/series_course.html');">系列课</a>-->
+                </li>
+                <li totag="course_v2"><a onclick="locationToHref('/web/course_v2.html');">课程库</a></li>
+                <li totag="live_v1"><a onclick="locationToHref('/web/live_v1/live.html');">直播间</a></li>
+                <li id="title-mytts" style=""><a style="color: #f44336; font-weight: 600;" onclick="LoginTts()">VIP</a></li>
+                <li><a onclick="toQW()">题库</a></li>
+                <li><a href="http://www.tedu.cn/?tmooc" target="_blank">线下课程</a></li>
+                <li><a href="/web/library/library.html">旧版入口</a></li>
+                <li class="user">
+                    <div id="log-reg" class="log-reg" style="display: none;">
+                        <a onclick="locationToHref2('/web/login_new.html')">登录</a> | <a onclick="locationToHref2('/web/register_new.html')">注册</a>
+                    </div>
+                    <div id="logined" class="logined" style="">
+                        <a href=""><img id="user-pic" class="user-pic" src="http://www.tmooc.cn/script/tu/user.jpg"></a>
+                        <ul id="user-nav" class="user-nav" style="display: none;">
+                           <!--  <li id="user-outday" class="user-outday">会员剩余0天</li> -->
+                            <li><a href="/web/user_new/per_infor.html">个人中心</a></li>
+                            <li><a onclick="LoginInote()">我的云笔记</a></li>
+                            <li id="user-mytts" style=""><a onclick="LoginTts()">我的TTS</a></li>
+                            <li><a onclick="outlogin()">退出</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="display:none">
+    <div class="l-170227-10" id="ts_m_header">
+        <div class="open-title"><span></span>操作提示</div>
+        <div class="open-cont">
+            <div class="open-text"></div>
+            <div class="open-btn"><span class="btn btn-primary close-pay-submitx">确定</span></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://tmooc.cn/script/js/colorbox/jquery.colorbox-min-1.6.4.js"></script>
+<script>
+	//百度统计---
+	(function () {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?9712e8cf4f76a1de06d6580a95348b4f";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+    /* 当前页提示 */
+	var curTitile = location.href.split('.html')[0].split('/').pop();
+	$('.head-nav').find('li').each(function () {
+		if ($(this).attr('totag') == curTitile) {
+			$(this).addClass('cur');
+		}
+	});
+    /*用户菜单*/
+	$('#logined').hover(function () {
+		$('#user-nav').stop().slideDown(250);
+	}, function () {
+		$('#user-nav').stop().slideUp(200);
+	});
+    /*获取用户信息*/
+	var user = main_getLoginUserFromCookie();
+	if (user != null) {//登录状态
+		$("#log-reg").hide();
+		$("#logined").show();
+		//修改头像绝对地址
+		if (user.img != "" && user.img != "null") {
+			$("#user-pic").attr("src", E_URL + "/script/userimg/" + user.img + "?" + Math.random());
+		} else {
+			$("#user-pic").attr("src", E_URL + "/script/tu/user.jpg");
+		}
+		//显示会员天数
+		$("#user-outday").html('会员剩余 ' + user.outdays + ' 天');
+		if (user.istts == 1) {
+			$("#user-mytts,#title-mytts").show();
+		}
+	}
+	//我的云笔记
+	function LoginInote() {
+		var user = main_getLoginUserFromCookie();
+		var w = window.open();
+		if (user == null) {
+			main_toLoginThenToBeforePage(location.href);
+		}
+		$.ajax({
+			type: "post",
+			url: E_URL + "/login/hadlogin/" + user.sessionid,
+			dataType: "json",
+			success: function (data) {
+				if (data.result == 1) {
+					w.location = ( Y_URL + "/login/loginnow?sessionId=" + encodeURI(data.sid) );
+				} else {
+					main_toLoginThenToBeforePage(location.href);
+				}
+			}
+		});
+	}
+	//我的TTS
+	function LoginTts() {
+		var user = main_getLoginUserFromCookie();
+
+		if (user == null) {
+			main_toLoginThenToBeforePage(location.href);
+		}
+		$.ajax({
+			type: "post",
+			url: E_URL + "/login/hadlogin/" + user.sessionid,
+			dataType: "json",
+			data: {
+				type: 'tts'
+			},
+			async: false,
+			success: function (data) {
+				if (data.result == 1) {
+					var w = window.open();
+					w.location = TTS_MYTTS_url + "?sessionId=" + encodeURI(data.sid) + "&date=" + (encodeURI(new Date()));
+				} else {
+
+					$('#ts_m_header .open-text').html(data.mess);
+					$.colorbox({
+						width: "400px",
+						height: "300px",
+						inline: true,
+						closeButton: true,
+						escKey: false,
+						overlayClose: false,
+						href: "#ts_m_header"
+					});
+					//main_toLoginThenToBeforePage(location.href);
+				}
+			}
+		});
+	}
+	$(document).on('click', '#ts_m_header .close-pay-submitx', function () {
+		$.colorbox.close();
+		location.href = "/web/user_new/per_infor.html?open_link=link1";
+	})
+	//退出
+	function outlogin() {
+		var user = main_getLoginUserFromCookie();
+		if (user != null) {
+			$.cookie('sessionid', null);
+			$.ajax({
+				type: "post",
+				url: E_URL + "/login/out/" + user.sessionid,
+				dataType: "json",
+				success: function (data) {
+					var href = location.href;
+					if (href.indexOf("/web/user/userinfo.html") > -1) {
+						locationToHref("");
+					}
+					history.go(0);
+				}
+			});
+		}
+	}
+	//跳到技术问答页面
+	function toHuDong() {
+		var user = main_getLoginUserFromCookie();
+		if (user == null) {
+			main_toLoginThenToBeforePage(location.href);
+		} else {
+			$.ajax({
+				type: "get",
+				url: E_URL + "/user/toHudong?sessionId=" + user.sessionid,
+				success: function (data) {
+					if (data.result == 1) {
+					window.open(data.mess)
+					} else {
+						$('#ts_m_header .open-text').html(data.mess);
+						$.colorbox({
+							width: "400px",
+							height: "300px",
+							inline: true,
+							closeButton: true,
+							escKey: false,
+							overlayClose: false,
+							href: "#ts_m_header"
+						});
+					}
+				}
+			});
+//			var w = window.open('_blank');
+//			w.location = "http://hudong.tarena.com.cn/upload/go.php?sessionid=" + user.sessionid;
+		}
+	}
+	//跳到题库页面
+
+	function toQW() {
+		var user = main_getLoginUserFromCookie();
+		if (user == null) {
+			main_toLoginThenToBeforePage(location.href);
+		} else {
+			var w = window.open('_blank');
+			w.location = "http://qwserver.tmooc.cn/web/tm_exam.html?sessionId=" + user.sessionid;
+		}
+	}
+	//点击搜索按钮时调用
+	function searchH() {
+		var searchText = $("#searchTextH").val().trim();
+		var reg = /</g;
+		var reg2 = />/g;
+		searchText = searchText.replace(reg, '&lt');
+		searchText = searchText.replace(reg2, '&gt');
+		if (searchText == "" || searchText == "您想学习的课程")
+			return;
+		//searchText = decodeURI(searchText);
+		location.href = E_URL + "/web/find.html?search=" + searchText
+			+ "&page=0&date=" + (encodeURI(new Date()));
+	}
+
+	//侧边栏
+    /*
+     * 0509-ccj
+     * 首页不遮盖banner图，其他页面默认显示
+     * */
+	var regH_ = /(index_new)|(series_course)|(series_play)|(course_v2)|(course_play)/;
+	var curURL_ = window.location.href;
+
+	var sidebar_ = '<div id="ind-cbl" class="ind-cbl"><ul><li class="cb-bg01"><a href="tencent://message/?uin=1309593062&Site=&Menu=yes"><p>在线咨询</p></a></li>';
+	sidebar_ += '<li class="cb-bg02"><a href="http://shang.qq.com/wpa/qunwpa?idkey=ad7df75dfbaed76d530be2f80dcfa746a3c6a6a8b93d323e06f9feaae2eb810b" target="_blank"><p>技术咨询</p></a></li>';
+	sidebar_ += '<li class="cb-bg03"><p>电话咨询</p><p class="ch-phone">15727392825</p></li>';
+	sidebar_ += '<li class="cb-bg04"><p>请关注我</p><p class="ch-2c"></p></li>';
+	sidebar_ += '<li class="cb-bg05"><p>返回顶部</p></li>';
+	sidebar_ += '</ul></div>';
+
+	if (regH_.test(curURL_)) {
+		$('body').append(sidebar_);
+		$('#to-Top').remove();
+		$('.cb-bg03,.cb-bg04').hover(function () {
+			$('#ind-cbl').addClass('active');
+		}, function () {
+			$('#ind-cbl').removeClass('active');
+		});
+		$('#ind-cbl').on('click', '.cb-bg05', function (evt) {
+			$('html, body').animate({scrollTop: 0}, 'slow');
+		});
+		if (/index_new/.test(curURL_)) {
+			var winT_, tarT_ = $('.banner_wrap').offset(), tarO_ = $('#ind-cbl'), winH_ = $(window).height();
+			if ($(window).scrollTop() < (tarT_['top'] - (parseInt(winH_ / 2) - 175))) {
+				tarO_.css('top', (tarT_['top'] + 175) - $(window).scrollTop());
+			}
+			$(window).scroll(function (evt) {
+				winT_ = $(this).scrollTop();
+				if (winT_ > (tarT_['top'] - (parseInt(winH_ / 2) - 175))) {
+					tarO_.removeAttr('style');
+				} else {
+					tarO_.css('top', (tarT_['top'] + 175) - winT_);
+				}
+			});
+		}
+		// 0509-ccj 删除
+        /*$(window).scroll(function(evt){
+         var winT_=$(this).scrollTop();
+         var tarO_=$('.container').offset();
+         if(/index_new/.test(curURL_)){tarO_=$('#rmkc').offset()}
+         if(winT_>tarO_['top']){
+         tarOL_=tarO_['left']-75;
+         if(tarO_['left']==0){tarOL_=tarO_['left'];}
+         $('#ind-cbl').css('right',tarOL_).show(function(evt){
+         $(this).find('ul').removeClass('active');
+         });
+         }else{
+         $('#ind-cbl').find('ul').addClass('active');
+         }
+         });*/
+	}
+
+</script>
+<!-- Piwik -->
+<script type="text/javascript">
+	var _paq = _paq || [];
+	// tracker methods like "setCustomDimension" should be called before "trackPageView"
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function () {
+		var u = "//123.59.58.63/piwik/";
+		_paq.push(['setTrackerUrl', u + 'piwik.php']);
+		_paq.push(['setSiteId', '3']);
+		var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+		g.type = 'text/javascript';
+		g.async = true;
+		g.defer = true;
+		g.src = u + 'piwik.js';
+		s.parentNode.insertBefore(g, s);
+	})();
+</script>
+<!-- End Piwik Code -->
+</div>
+<!--焦点图-->
+<div id="slideBox" class="slideBox">
+    <div class="bd">
+        <div class="tempWrap" style="overflow: hidden; position: relative; width: auto;"><ul id="bannershow" style="width: 8544px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -4272px;"><li class="clone" style="float: left; width: 1424px;"><a href="https://mp.weixin.qq.com/s/yXj5Dbg8vKaCgKlfu1HRPQ" target="_blank" style="background-image: url(..//script/img_active/1523841621780.jpg);"></a></li><li style="float: left; width: 1424px;"><a href="http://tmooc.cn/web/live_v1/live_intro.html?classId=183416" target="_blank" style="background-image: url(..//script/img_active/1525751999840.jpg);"></a></li><li style="float: left; width: 1424px;"><a href="https://mp.weixin.qq.com/s?__biz=MzIyMDExMjI4MA==&amp;mid=2651865774&amp;idx=1&amp;sn=a7b0b0cb5ea5f2c68bae22fb30a7576a&amp;key=e25af9ba9abbff793226548f4a11dcdd6ebad9d2d746e181609130216fe5d9dc99213cc3ade58c1845dd6d260009f3fe66bc0fec9f14c00c025ad85f4812fb0cbb08ce83d4ae345ec4fb77dd252ae6d4&amp;ascene=0&amp;uin=MjMyNTcwNzM0MQ%3D%3D&amp;devicetype=iMac+MacBookAir7%2C2+OSX+OSX+10.12.6+build(16G29)&amp;version=12020810&amp;nettype=WIFI&amp;lang=zh_CN&amp;fontScale=100&amp;pass_ticket=0B6pCOwBuEnYlqUMovxp%2FHBRR819mFbUQ8qQ2t6WDANe21OQ3EnzM%2FMD3wX4tOOr" target="_blank" style="background-image: url(..//script/img_active/1524820117663.jpg);"></a></li><li style="float: left; width: 1424px;"><a href="http://tmooc.cn/web/live_v1/live_intro.html?classId=186704" target="_blank" style="background-image: url(..//script/img_active/1523958477383.jpg);"></a></li><li style="float: left; width: 1424px;"><a href="https://mp.weixin.qq.com/s/yXj5Dbg8vKaCgKlfu1HRPQ" target="_blank" style="background-image: url(..//script/img_active/1523841621780.jpg);"></a></li><li class="clone" style="float: left; width: 1424px;"><a href="http://tmooc.cn/web/live_v1/live_intro.html?classId=183416" target="_blank" style="background-image: url(..//script/img_active/1525751999840.jpg);"></a></li></ul></div>
+    </div>
+    <div class="hd">
+        <ul><li class="">1</li><li class="">2</li><li class="on">3</li><li class="">4</li></ul>
+    </div>
+</div>
+<div class="banner_wrap">
+    <div class="container">
+        <div class="banner clearfloat" style="position: relative;">
+            <ul>
+                <li class="b_search">
+                    <div>
+                        <h2>在线学习权威的IT课程</h2>
+                        <div class="searchbar clearfloat">
+                            <input id="searchText" placeholder="您想学习的课程" type="text">
+                            <button id="search">搜 索</button>
+                        </div>
+                        <p>成为<span id="user_num">464910</span>位<strong>TMOOC</strong>学员中的一员<br>学习<span>16</span>个方向的<span id="book_num">1009</span>门课程。</p>
+                    </div>
+                </li>
+                <!-- 				<li class="b_li l1">
+                                    <a onclick="toCoursePage('大数据互联网+')">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                            <div>
+                                                <strong id="dir_icon1_bigdata">23</strong>
+                                                <span>course</span>
+                                                <strong id="video_icon1_bigdata" class="space">398</strong>
+                                                <span>video</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li> -->
+                <li class="b_li l2">
+                    <a onclick="toCoursePage('PHP')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_php">32</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_php" class="space">104</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l3">
+                    <a onclick="toCoursePage('嵌入式')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_eos">86</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_eos" class="space">251</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li k"></li>
+                <li class="b_li l4">
+                    <a onclick="toCoursePage('Unity3D')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_unity">41</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_unity" class="space">91</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+				
+				<!--发现杯 -->
+         <!--        <li class="b_li lad">
+                    <a target="_blank" href="http://www.ycty.org/about/news/78620.html">
+                        <div class="front"><img src="../script/img_v2/ad-findcup.png"/></div>
+                        <div class="back"><img src="../script/img_v2/ad-findcup-b.png"/></div>
+                    </a>
+                </li> -->
+
+                <li class="b_li l5">
+                    <a onclick="toCoursePage('UI设计')">
+                        <div class="front"></div>
+                        <div class="back big">
+                            <div>
+                                <strong id="dir_icon1_uid">157</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_uid" class="space">161</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l6">
+                    <a onclick="toCoursePage('软件测试')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_st">51</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_st" class="space">164</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l7">
+                    <a onclick="toCoursePage('UI设计')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_uid">149</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_uid" class="space">912</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l8">
+                    <a onclick="toCoursePage('Web前端')">
+                        <div class="front"></div>
+                        <div class="back big">
+                            <div>
+                                <strong id="dir_icon1_web">45</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_web" class="space">142</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l9">
+                    <a onclick="toCoursePage('Java')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_java">85</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_java" class="space">356</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l10">
+                    <a onclick="toCoursePage('Android')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_android">80</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_android" class="space">414</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l11">
+                    <a onclick="toCoursePage('C++')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_cpp">37</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_cpp" class="space">134</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l12">
+                    <a onclick="toCoursePage('iOS')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_ios">52</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_ios" class="space">223</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l13">
+                    <a onclick="toCoursePage('网络营销')">
+                        <div class="front"></div>
+                        <div class="back big">
+                            <div>
+                                <strong id="dir_icon1_em">74</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_em" class="space">107</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l14">
+                    <a onclick="toCoursePage('Linux云计算')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_linux">86</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_linux" class="space">258</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l15">
+                    <a onclick="toCoursePage('ACC')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_acct">0</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_acct" class="space">0</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="b_li l16">
+                    <a onclick="toCoursePage('.NET')">
+                        <div class="front"></div>
+                        <div class="back">
+                            <div>
+                                <strong id="dir_icon1_dnet">38</strong>
+                                <span>course</span>
+                                <strong id="video_icon1_dnet" class="space">111</strong>
+                                <span>video</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="more"><a href="./course_v2.html"><span>查看更多</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="ind_r_odd">
+    <div class="container re_course rec1">
+        <h2 id="rmkc">热门课程</h2>
+        <ul class="clearfloat" id="hotBook"><li>   <a href="./course_play.html?bookId=11200&amp;name=%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AE%80%E4%BB%8B&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/IOS/微信小程序开发/微信小程序简介.jpg" alt="">           <span>前沿技术</span>           <em>微信小程序简介</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>微信小程序简介</p>           <p>讲师：纪盈鑫 课时：3课时</p>           <p>学习人数：62552人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11238&amp;name=%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%A6%82%E8%BF%B0&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/微信小程序概述.jpg" alt="">           <span>前沿技术</span>           <em>微信小程序概述</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>微信小程序概述</p>           <p>讲师：纪盈鑫 课时：3课时</p>           <p>学习人数：17691人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11239&amp;name=Shee%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A1%86%E6%9E%B6&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/Shee小程序的核心框架.jpg" alt="">           <span>前沿技术</span>           <em>Shee小程序的核心框架</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>Shee小程序的核心框架</p>           <p>讲师：纪盈鑫 课时：5课时</p>           <p>学习人数：13633人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11240&amp;name=UI%E6%8E%A7%E4%BB%B6%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%B8%80%EF%BC%89&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/UI控件之基本控件（一）.jpg" alt="">           <span>前沿技术</span>           <em>UI控件之基本控件（一）</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>UI控件之基本控件（一）</p>           <p>讲师：纪盈鑫 课时：3课时</p>           <p>学习人数：12898人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=11241&amp;name=UI%E6%8E%A7%E4%BB%B6%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%8E%A7%E4%BB%B6%EF%BC%88%E4%BA%8C%EF%BC%89&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/UI控件之基本控件（二）.jpg" alt="">           <span>前沿技术</span>           <em>UI控件之基本控件（二）</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>UI控件之基本控件（二）</p>           <p>讲师：纪盈鑫 课时：4课时</p>           <p>学习人数：5221人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11242&amp;name=UI%E6%8E%A7%E4%BB%B6%E4%B9%8B%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/UI控件之表单控件.jpg" alt="">           <span>前沿技术</span>           <em>UI控件之表单控件</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>UI控件之表单控件</p>           <p>讲师：纪盈鑫 课时：3课时</p>           <p>学习人数：5156人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11300&amp;name=UI%E6%8E%A7%E4%BB%B6%E4%B9%8B%E9%AB%98%E7%BA%A7%E8%A7%86%E5%9B%BE%EF%BC%88%E4%B8%80%EF%BC%89&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/UI控件之高级视图（一）.jpg" alt="">           <span>前沿技术</span>           <em>UI控件之高级视图（一）</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>UI控件之高级视图（一）</p>           <p>讲师：纪盈鑫 课时：3课时</p>           <p>学习人数：5137人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11301&amp;name=UI%E6%8E%A7%E4%BB%B6%E4%B9%8B%E9%AB%98%E7%BA%A7%E8%A7%86%E5%9B%BE%EF%BC%88%E4%BA%8C%EF%BC%89&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/UI控件之高级视图（二）.jpg" alt="">           <span>前沿技术</span>           <em>UI控件之高级视图（二）</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>UI控件之高级视图（二）</p>           <p>讲师：纪盈鑫 课时：3课时</p>           <p>学习人数：4148人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11338&amp;name=UI%E6%8E%A7%E4%BB%B6%E4%B9%8B%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%9E%E7%8E%B0%EF%BC%88%E4%B8%80%EF%BC%89&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/UI控件之多媒体实现（一）.jpg" alt="">           <span>前沿技术</span>           <em>UI控件之多媒体实现（一）</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>UI控件之多媒体实现（一）</p>           <p>讲师：纪盈鑫 课时：4课时</p>           <p>学习人数：2867人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=11339&amp;name=UI%E6%8E%A7%E4%BB%B6%E4%B9%8B%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%9E%E7%8E%B0%EF%BC%88%E4%BA%8C%EF%BC%89&amp;price=30&amp;dir=%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF">       <div class="front">           <img src="./library/tu_new/前沿技术/微信开发/UI控件之多媒体实现（二）.jpg" alt="">           <span>前沿技术</span>           <em>UI控件之多媒体实现（二）</em>       </div>       <div class="back">           <i class="icon1_tmooc"></i>           <p>UI控件之多媒体实现（二）</p>           <p>讲师：纪盈鑫 课时：5课时</p>           <p>学习人数：1914人</p>       </div>   </a></li></ul>
+    </div>
+</div>
+<div class="ind_r_even">
+    <div class="container re_course rec2">
+        <h2 id="zxkc">最新课程</h2>
+        <ul class="clearfloat" id="newBook"><li class="lg">   <a href="./course_play.html?bookId=11198&amp;name=%E5%A6%82%E4%BD%95%E7%94%A8photoshop%E5%88%B6%E4%BD%9Cgif%E8%A1%A8%E6%83%85&amp;price=0&amp;dir=UID">       <div>           <img src="../script/tu/如何用photoshop制作gif表情.jpg" alt="">           <span>UID</span>           <em>如何用photoshop制作gif表情</em>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11199&amp;name=%E7%94%A8photoshop%E5%88%B6%E4%BD%9C%E6%A0%87%E5%87%86%E8%AF%81%E4%BB%B6%E7%85%A7&amp;price=0&amp;dir=UID">       <div class="front">           <img src="./library/tu_new/UID/UI设计/用photoshop制作标准证件照.jpg" alt="">           <span>UID</span>           <em>用photoshop制作标准证件照</em>       </div>       <div class="back">           <i class="icon1_uid"></i>           <p>用photoshop制作标准证件照</p>           <p>讲师：罗黎昆 课时：1课时</p>           <p>学习人数：25857人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11190&amp;name=ARM%20MDK%E5%B7%A5%E7%A8%8B&amp;price=0&amp;dir=%E5%B5%8C%E5%85%A5%E5%BC%8F">       <div class="front">           <img src="./library/tu_new/嵌入式/智能硬件基础/ARM MDK工程.jpg" alt="">           <span>嵌入式</span>           <em>ARM MDK工程</em>       </div>       <div class="back">           <i class="icon1_eos"></i>           <p>ARM MDK工程</p>           <p>讲师：李辉 课时：4课时</p>           <p>学习人数：3593人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=11189&amp;name=STM32F4%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%A4%8D%E4%BD%8D&amp;price=0&amp;dir=%E5%B5%8C%E5%85%A5%E5%BC%8F">       <div class="front">           <img src="./library/tu_new/嵌入式/智能硬件基础/STM32F4启动与复位.jpg" alt="">           <span>嵌入式</span>           <em>STM32F4启动与复位</em>       </div>       <div class="back">           <i class="icon1_eos"></i>           <p>STM32F4启动与复位</p>           <p>讲师：李辉 课时：4课时</p>           <p>学习人数：1765人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11191&amp;name=IO%E6%8E%A7%E5%88%B6%E4%B9%8B%E5%AF%84%E5%AD%98%E5%99%A8&amp;price=0&amp;dir=%E5%B5%8C%E5%85%A5%E5%BC%8F">       <div class="front">           <img src="./library/tu_new/嵌入式/智能硬件基础/IO控制之寄存器.jpg" alt="">           <span>嵌入式</span>           <em>IO控制之寄存器</em>       </div>       <div class="back">           <i class="icon1_eos"></i>           <p>IO控制之寄存器</p>           <p>讲师：李辉 课时：4课时</p>           <p>学习人数：2961人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11192&amp;name=STM32F4%20%E6%A0%87%E5%87%86%E5%A4%96%E8%AE%BE%E5%BA%93%E5%BA%94%E7%94%A8&amp;price=0&amp;dir=%E5%B5%8C%E5%85%A5%E5%BC%8F">       <div class="front">           <img src="./library/tu_new/嵌入式/智能硬件基础/STM32F4 标准外设库应用.jpg" alt="">           <span>嵌入式</span>           <em>STM32F4 标准外设库应用</em>       </div>       <div class="back">           <i class="icon1_eos"></i>           <p>STM32F4 标准外设库应用</p>           <p>讲师：李辉 课时：4课时</p>           <p>学习人数：1351人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=11193&amp;name=STM32F4%E4%B8%AD%E6%96%AD&amp;price=0&amp;dir=%E5%B5%8C%E5%85%A5%E5%BC%8F">       <div class="front">           <img src="./library/tu_new/嵌入式/智能硬件基础/STM32F4中断.jpg" alt="">           <span>嵌入式</span>           <em>STM32F4中断</em>       </div>       <div class="back">           <i class="icon1_eos"></i>           <p>STM32F4中断</p>           <p>讲师：李辉 课时：4课时</p>           <p>学习人数：1051人</p>       </div>   </a></li></ul>
+    </div>
+</div>
+<div class="ind_r_odd">
+    <div class="container re_course rec1">
+        <h2 id="mfkc">免费课程</h2>
+        <ul class="clearfloat" id="freeBook"><li>   <a href="./course_play.html?bookId=10612&amp;name=LoadRunner%E5%85%A5%E9%97%A8&amp;price=0&amp;dir=%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95">       <div class="front">           <img src="./library/tu_new/软件测试/LoadRunner入门/LoadRunner入门.jpg" alt="">           <span>软件测试</span>           <em>LoadRunner入门</em>       </div>       <div class="back">           <i class="icon1_st"></i>           <p>LoadRunner入门</p>           <p>讲师：卢剑宇 课时：4课时</p>           <p>学习人数：12653人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10623&amp;name=%E7%BD%91%E9%A1%B5%E6%89%81%E5%B9%B3%E5%8C%96%E5%9B%BE%E6%A0%87%E8%AE%BE%E8%AE%A1&amp;price=0&amp;dir=UID">       <div class="front">           <img src="./library/tu_new/UID/Web界面设计/网页扁平化图标设计.jpg" alt="">           <span>UID</span>           <em>网页扁平化图标设计</em>       </div>       <div class="back">           <i class="icon1_uid"></i>           <p>网页扁平化图标设计</p>           <p>讲师：刘涛 课时：1课时</p>           <p>学习人数：17248人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10616&amp;name=Sphinx%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2&amp;price=0&amp;dir=PHP">       <div class="front">           <img src="./library/tu_new/PHP/PHP高级应用/Sphinx全文检索.jpg" alt="">           <span>PHP</span>           <em>Sphinx全文检索</em>       </div>       <div class="back">           <i class="icon1_php"></i>           <p>Sphinx全文检索</p>           <p>讲师：韩永霜 课时：3课时</p>           <p>学习人数：14454人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10648&amp;name=%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95&amp;price=0&amp;dir=C++">       <div class="front">           <img src="./library/tu_new/C++/数据结构和算法/冒泡排序算法.jpg" alt="">           <span>C++</span>           <em>冒泡排序算法</em>       </div>       <div class="back">           <i class="icon1_cpp"></i>           <p>冒泡排序算法</p>           <p>讲师：马如忠 课时：3课时</p>           <p>学习人数：10172人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=10714&amp;name=%E7%BB%98%E7%94%BB%E6%9E%84%E5%9B%BE&amp;price=0&amp;dir=UID">       <div class="front">           <img src="./library/tu_new/UID/AUI美术/绘画构图.jpg" alt="">           <span>UID</span>           <em>绘画构图</em>       </div>       <div class="back">           <i class="icon1_uid"></i>           <p>绘画构图</p>           <p>讲师：刘杨 课时：1课时</p>           <p>学习人数：10485人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10716&amp;name=%E5%AE%8C%E7%BE%8E%E8%A7%A3%E8%AF%BB%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B&amp;price=0&amp;dir=Web%E5%89%8D%E7%AB%AF">       <div class="front">           <img src="./library/tu_new/Web前端/Axure从入门到精通/完美解读网站原型.jpg" alt="">           <span>Web前端</span>           <em>完美解读网站原型</em>       </div>       <div class="back">           <i class="icon1_web"></i>           <p>完美解读网站原型</p>           <p>讲师：邹婷 课时：3课时</p>           <p>学习人数：29031人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10821&amp;name=%E4%B8%AD%E5%B0%8F%E4%BC%81%E4%B8%9A%E5%A6%82%E4%BD%95%E5%81%9A%E5%BE%AE%E5%8D%9A%E8%90%A5%E9%94%80&amp;price=0&amp;dir=%E7%BD%91%E7%BB%9C%E8%90%A5%E9%94%80">       <div class="front">           <img src="./library/tu_new/网络营销/微博营销/中小企业如何做微博营销.jpg" alt="">           <span>网络营销</span>           <em>中小企业如何做微博营销</em>       </div>       <div class="back">           <i class="icon1_em"></i>           <p>中小企业如何做微博营销</p>           <p>讲师：孙建业 课时：3课时</p>           <p>学习人数：7291人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10129&amp;name=Android%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA&amp;price=0&amp;dir=Android">       <div class="front">           <img src="./library/tu_new/Android/Android 入门/Android开发环境搭建.jpg" alt="">           <span>Android</span>           <em>Android开发环境搭建</em>       </div>       <div class="back">           <i class="icon1_android"></i>           <p>Android开发环境搭建</p>           <p>讲师：成恒 课时：4课时</p>           <p>学习人数：20108人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10354&amp;name=%E5%9F%BA%E6%9C%AC%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F&amp;price=0&amp;dir=Java">       <div class="front">           <img src="./library/tu_new/Java/Java 常用API/基本正则表达式.jpg" alt="">           <span>Java</span>           <em>基本正则表达式</em>       </div>       <div class="back">           <i class="icon1_java"></i>           <p>基本正则表达式</p>           <p>讲师：张东 课时：6课时</p>           <p>学习人数：19792人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=10803&amp;name=ARPG%E6%89%8B%E6%B8%B8%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89&amp;price=0&amp;dir=Unity3D">       <div class="front">           <img src="./library/tu_new/U3D/项目案例/ARPG手游开发（一）.jpg" alt="">           <span>Unity3D</span>           <em>ARPG手游开发（一）</em>       </div>       <div class="back">           <i class="icon1_unity"></i>           <p>ARPG手游开发（一）</p>           <p>讲师：臧楠 课时：2课时</p>           <p>学习人数：27054人</p>       </div>   </a></li></ul>
+    </div>
+</div>
+<div class="ind_r_even">
+    <div class="container re_course rec2">
+        <h2 id="tjkc">推荐课程</h2>
+        <ul class="clearfloat" id="recommendBook"><li class="lg">   <a href="./course_play.html?bookId=10622&amp;name=%E6%89%8B%E6%9C%BA%E5%9B%BE%E6%A0%87%E7%BB%98%E5%88%B6&amp;price=10&amp;dir=UID">       <div>           <img src="../script/tu/手机图标绘制.jpg" alt="">           <span>UID</span>           <em>手机图标绘制</em>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10816&amp;name=CSS3%E5%88%B6%E4%BD%9C%E9%80%90%E5%B8%A7%E5%8A%A8%E7%94%BB&amp;price=10&amp;dir=UID">       <div class="front">           <img src="./library/tu_new/UID/Web界面设计/CSS3制作逐帧动画.jpg" alt="">           <span>UID</span>           <em>CSS3制作逐帧动画</em>       </div>       <div class="back">           <i class="icon1_uid"></i>           <p>CSS3制作逐帧动画</p>           <p>讲师：段惠勇 课时：1课时</p>           <p>学习人数：5046人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10734&amp;name=5-%E5%8F%98%E9%87%8F&amp;price=0&amp;dir=%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BA%92%E8%81%94%E7%BD%91+">       <div class="front">           <img src="./library/tu_new/互联网大牛/达内才高-JAVASE-UNIT01/5-变量.jpg" alt="">           <span>大数据互联网+</span>           <em>5-变量</em>       </div>       <div class="back">           <i class="icon1_bigdata"></i>           <p>5-变量</p>           <p>讲师：李翊 课时：1课时</p>           <p>学习人数：9053人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=10579&amp;name=Unity%E5%9C%B0%E5%BD%A2%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%AE%9E%E6%99%AF%E6%BC%AB%E6%B8%B8&amp;price=10&amp;dir=Unity3D">       <div class="front">           <img src="./library/tu_new/U3D/Unity组件/Unity地形环境搭建及实景漫游.jpg" alt="">           <span>Unity3D</span>           <em>Unity地形环境搭建及实景漫游</em>       </div>       <div class="back">           <i class="icon1_unity"></i>           <p>Unity地形环境搭建及实景漫游</p>           <p>讲师：张晓彤 课时：3课时</p>           <p>学习人数：7660人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=10763&amp;name=%E5%A4%AA%E7%A9%BA%E5%A4%A7%E6%88%98(III)&amp;price=10&amp;dir=Unity3D">       <div class="front">           <img src="./library/tu_new/U3D/项目案例/太空大战(III).jpg" alt="">           <span>Unity3D</span>           <em>太空大战(III)</em>       </div>       <div class="back">           <i class="icon1_unity"></i>           <p>太空大战(III)</p>           <p>讲师：祁天暄 课时：2课时</p>           <p>学习人数：17622人</p>       </div>   </a></li><li>   <a href="./course_play.html?bookId=11045&amp;name=%E5%A4%9A%E5%8C%BA%E5%9F%9F%E5%8F%8A%E7%89%B9%E6%AE%8A%E8%A7%A3%E6%9E%90&amp;price=10&amp;dir=Linux%E4%BA%91%E8%AE%A1%E7%AE%97">       <div class="front">           <img src="./library/tu_new/Linux云计算/DNS域名系统/多区域及特殊解析.jpg" alt="">           <span>Linux云计算</span>           <em>多区域及特殊解析</em>       </div>       <div class="back">           <i class="icon1_linux"></i>           <p>多区域及特殊解析</p>           <p>讲师：曾晔 课时：2课时</p>           <p>学习人数：4649人</p>       </div>   </a></li><li class="right sm">   <a href="./course_play.html?bookId=11194&amp;name=UART&amp;price=0&amp;dir=%E5%B5%8C%E5%85%A5%E5%BC%8F">       <div class="front">           <img src="./library/tu_new/嵌入式/智能硬件基础/UART.jpg" alt="">           <span>嵌入式</span>           <em>UART</em>       </div>       <div class="back">           <i class="icon1_eos"></i>           <p>UART</p>           <p>讲师：李辉 课时：5课时</p>           <p>学习人数：3716人</p>       </div>   </a></li></ul>
+    </div>
+</div>
+<div class="footer"><div class="foot-box container clearfloat">
+	<div class="foot-2code"></div>
+	<div class="foot-intro">
+		<span></span>
+		<p>
+			达内精品在线TMOOC.CN致力于IT技能职业培训<br>
+			涵盖16个方向、与多年线下资源紧密结合<br>
+			权威的IT教育职业培训网站
+		</p>
+		<em>© 达内科技有限公司版权所有 京ICP备12003709号-2</em>
+	</div>
+	<div class="foot-about">
+		<dl>
+			<dt>公司</dt>
+			<dd><a href="http://www.tedu.cn/" target="_blank">关于我们</a></dd>
+			<dd><a href="/web/about/team.html" target="_blank">开发团队</a></dd>
+			<dd><a href="javascript:void(0)">管理团队</a></dd>
+			<dd><a href="http://www.jobshow.cn/" target="_blank">工作机会</a></dd>
+		</dl>
+		<dl>
+			<dt>朋友</dt>
+			<dd><a href="javascript:void(0)">Wiki</a></dd>
+			<dd><a href="javascript:void(0)">开发者</a></dd>
+			<dd><a href="javascript:void(0)">合作伙伴</a></dd>
+<!-- 			<dd><a href="http://qa.tarena.com.cn" target="_blank">互动社区</a></dd>
+ -->			<dd><a href="javascript:void(0)">合作项目</a></dd>
+		</dl>
+		<dl>
+			<dt>联系我们</dt>
+			<dd><a href="javascript:void(0)">博客</a></dd>
+			<dd><a href="mailto:tmooc@tarena.com.cn">电子邮箱</a></dd>
+			<dd><a href="http://tts.tmooc.cn/ttsPage/vipService.html" style="color:#f54236;font-weight: bold;">VIP服务</a></dd>
+		<!--<dd><a href="/web/official_new.html" target="_blank">官方QQ群</a></dd>-->
+			<dd><a href="javascript:void(0)">微信公众号</a></dd>
+		</dl>
+		<dl>
+			<dt>更多</dt>
+			<dd><a href="/web/about/privacy.html" target="_blank">隐私</a></dd>
+			<dd><a href="javascript:void(0)">服务条款</a></dd>
+			<dd><a href="/web/about/contact.html" target="_blank">联系我们</a></dd>
+			<dd><a href="javascript:void(0)" class="aaa">网站公告</a></dd>
+		</dl>
+	</div>
+</div></div>
+
+<!--170818-cj-公告-->
+<!--<div id="js_md_notice" class="md170818-cj-notice">
+	<div class="notice-box">
+	    <img src="../script/img_v2/temp_notice.jpg"/>
+	    <span class="close js-close-nt"></span>
+	    <span class="btn text-center js-close-nt">我知道了</span>
+	</div>
+</div>
+-->
+<!--小文添加-->
+<!--<div class="muban-x">
+    <div class="muban">
+        <span class="close-x"></span>
+        <a href="http://tmooc.cn/web/TMOOC/index.html" target="_blank">
+            <img src="../script/img_17/img_svip_17/guanggao_03.png">
+        </a>
+    </div>
+</div>-->
+<!--跳转到视频验证页面-->
+<div class="md2017112701lty">
+    <div class="video-mb">
+        <div class="top-bar">
+            <span class="close js-close-lty">x</span>
+        </div>
+       <p>您需要进行账号验证<br>请<a href="http://www.tmooc.cn/web/user_new/per_infor.html?open_link=5">点击此处</a>跳转</p> 
+    </div>
+</div>
+<!--VIP活动页弹框图片-->
+<div class="md2017121201lty">
+    <div class="vip-content">
+        <a href="http://tmooc.cn/web/TMOOC/index4.html">
+            <img src="http://tmooc.cn/script/img_17/vip-layer.png" alt="">
+        </a>
+        <p class="vip-close js-vip-close"></p>
+    </div>
+</div>
+<script type="text/javascript" src="../script/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../script/js/index.js"></script>
+<script type="text/javascript" src="../script/js/jquery-cookie.js"></script>
+<script id="js-date01x" type="text/javascript" src="../script/js/main_new.js"></script>
+<script type="text/javascript" src="../script/js/dirnametocode.js"></script>
+<script type="text/javascript" src="../script/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript">
+ 
+	function openFun() {
+		return false;
+		var coo = $.cookie('num_');
+		
+		if (coo == 2) {
+			return false;
+		} else if (!coo) {
+			$('.muban-x').fadeIn();
+			$.cookie('num_', 1, {expires: 1});
+			return false;
+		} else if (coo == 1) {
+			setTimeout(function () {
+				$('.muban-x').fadeIn();
+				$.cookie('num_', 2, {expires: 1});
+			}, 30000)
+		}
+	}
+	/*openFun();
+	$('.muban-x span').click(function (e) {
+		$('.muban-x').fadeOut();
+		openFun();
+	});*/
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+	//VIP活动页弹框
+       $(".md2017121201lty .js-vip-close").click(function(){
+           $(".md2017121201lty").hide();
+       })
+	   
+         var user = main_getLoginUserFromCookie();
+        //视频验证
+        $(".js-close-lty").click(function(){
+            $(this).closest('.md2017112701lty').hide();
+        })
+        
+        if(user){//用户未登录 找不到session
+            $.get(E_URL + '/userValidate/isNeedValidate?sessionid='+user.sessionid,function(data){
+                if(data.code=="1"){
+                    $('.md2017112701lty').show();
+                }
+            })
+        }
+        //170818-cj-公告
+        $('.js-close-nt').click(function(){
+           $(this).closest('#js_md_notice').hide(); 
+        });
+        //banner
+        function showbanner(){
+            $.post(E_URL + "/pageBanner/getIndexBannerShow", function(data) {
+                if(data.result == 1) {
+                    var len = data.list.length;
+                   
+                    if(len != 0) {
+                        $('#bannershow').html('');
+                        var re = data.list;
+                        var ban_ =[];
+                        for(var i = 0; i < len; i++) {
+                            if(re[i] == null ) {
+                                continue;
+                            }
+                            ban_.push('<li><a href="' + re[i].url + '" target="_blank" style="background-image: url(../' + re[i].img +');"></a></li>');
+                        }
+                        $('#bannershow').html(ban_.join(''));
+                        jQuery(".slideBox").slide({
+                            titCell: ".hd ul",
+                            mainCell: ".bd ul",
+                            effect: "leftLoop",
+                            vis: "auto",
+                            scroll: 1,
+                            autoPlay: true,
+                            autoPage: true
+                        });
+                    }    
+                }
+            });
+        }
+        showbanner();
+        //为搜索按钮添加点击事件
+        $("#search").bind("click", search);
+        //为Enter键绑定事件
+        $("#searchText").on("keyup", function (a) {
+            if (a.keyCode == 108 || a.keyCode == 13) {
+
+                $("#search").trigger('click');
+            }
+        });
+        //获得用户数目、课程方向数目、book数目并显示
+        $.ajax({
+            type: "post",
+            url: E_URL + "/commonData/getCommonNum",
+            dataType: "json",
+            success: function (data) {
+                if (data.result == 1) {
+                    var commonNum = data.obj;
+                    $("#user_num").html(commonNum.userNum);
+                    $("#book_num").html(commonNum.bookNum);
+                }
+            }
+        });
+
+
+        $.ajax({
+            type: "post",
+            url: E_URL + "/book/getAllDirection",
+            dataType: "json",
+            success: function (data) {
+                if (data.result == 1) {
+                    var list = data.list;
+                    for (var i = 0; i < list.length; i++) {
+                        var dir = list[i];
+                        var dirCode = getDirCode(dir.name);
+                        $("#dir_" + dirCode).text(dir.bookNum);
+                        $("#video_" + dirCode).text(dir.videoNum);
+                    }
+
+                }
+            }
+        });
+
+
+        //判断用户是否登录
+       
+        if (user != null) {//登录状态
+            //alert("登录状态");
+        } else {
+            //alert("非登录状态");
+        }
+
+        //用于显示课程的element
+        var hotBook = $("#hotBook");
+        var newBook = $("#newBook");
+        var freeBook = $("#freeBook");
+        var recommendBook = $("#recommendBook");
+        //1.获得热门课程并显示
+        $.ajax({
+            type: "post",
+            url: E_URL + "/book_test/getHotBook",
+            dataType: "json",
+            success: function (data) {
+                if (data.result == 1) {
+                    var list = data.list;
+                    courseRecommend_1(hotBook, list);
+                }
+            }
+        });
+        //2.获得最新课程并显示
+        $.ajax({
+            type: "post",
+            url: E_URL + "/book/getNewBook",
+            dataType: "json",
+            success: function (data) {
+                if (data.result == 1) {
+                    var list = data.list;
+                    courseRecommend_2(newBook, list);
+                }
+            }
+        });
+        //3.获得免费课程并显示
+        $.ajax({
+            type: "post",
+            url: E_URL + "/book/getFreeBook",
+            dataType: "json",
+            success: function (data) {
+                if (data.result == 1) {
+                    var list = data.list;
+                    courseRecommend_1(freeBook, list);
+                }
+            }
+        });
+        //4.获得推荐课程并显示
+        $.ajax({
+            type: "post",
+            url: E_URL + "/book/getRecommendBook",
+            dataType: "json",
+            success: function (data) {
+                if (data.result == 1) {
+                    var list = data.list;
+                    courseRecommend_3(recommendBook, list);
+                }
+            }
+        });
+        //显示课程列表函数1
+        function courseRecommend_1(element, nowdata) {
+            var htmls = "";
+            for (var i = 0; i < nowdata.length; i++) {
+                var book = nowdata[i];
+
+                var dirCode = getDirCode(book.direction);
+                var bookName = encodeURI(book.name);
+                var bookDir = encodeURI(book.direction);
+
+                if (i == 4 || i == 9) {
+                    htmls += "<li class=\"right sm\">";
+                } else {
+                    htmls += "<li>";
+                }
+                htmls +=
+                    //"<li>"+
+                    "   <a href=\"./course_play.html?bookId=" + book.id + "&name=" + bookName + "&price=" + book.price + "&dir=" + bookDir + "\">" +
+                    "       <div class=\"front\">" +
+                    "           <img src=\"./library/tu_new/" + book.bookImg + "\" alt=\"\">" +
+                    "           <span>" + book.direction + "</span>" +
+                    "           <em>" + book.name + "</em>" +
+                    "       </div>" +
+                    "       <div class=\"back\">" +
+                    "           <i class=\"" + dirCode + "\"></i>" +
+                    "           <p>" + book.name + "</p>" +
+                    "           <p>讲师：" + book.teacher + " 课时：" + book.time + "课时</p>" +
+                    "           <p>学习人数：" + book.studentNum + "人</p>" +
+                    "       </div>" +
+                    "   </a>" +
+                    "</li>";
+            }
+            element.html(htmls);
+        }
+
+        //显示课程列表函数2
+        function courseRecommend_2(element, nowdata) {
+            var htmls = "";
+            for (var i = 0; i < nowdata.length; i++) {
+                var book = nowdata[i];
+                var dirCode = getDirCode(book.direction);
+                var bookName = encodeURI(book.name);
+                var bookDir = encodeURI(book.direction);
+                if (i == 0) {
+                    htmls +=
+                        "<li class=\"lg\">" +
+                        "   <a href=\"./course_play.html?bookId=" + book.id + "&name=" + bookName + "&price=" + book.price + "&dir=" + bookDir + "\">" +
+                        "       <div>" +
+                        "           <img src=\"../script/tu/如何用photoshop制作gif表情.jpg\" alt=\"\">" +
+                        "           <span>" + book.direction + "</span>" +
+                        "           <em>" + book.name + "</em>" +
+                        "       </div>" +
+                        "   </a>" +
+                        "</li>";
+                } else {
+                    if (i == 3 || i == 6) {
+                        htmls += "<li class=\"right sm\">";
+                    } else {
+                        htmls += "<li>";
+                    }
+                    htmls +=
+                        //"<li>"+
+                        "   <a href=\"./course_play.html?bookId=" + book.id + "&name=" + bookName + "&price=" + book.price + "&dir=" + bookDir + "\">" +
+                        "       <div class=\"front\">" +
+                        "           <img src=\"./library/tu_new/" + book.bookImg + "\" alt=\"\">" +
+                        "           <span>" + book.direction + "</span>" +
+                        "           <em>" + book.name + "</em>" +
+                        "       </div>" +
+                        "       <div class=\"back\">" +
+                        "           <i class=\"" + dirCode + "\"></i>" +
+                        "           <p>" + book.name + "</p>" +
+                        "           <p>讲师：" + book.teacher + " 课时：" + book.time + "课时</p>" +
+                        "           <p>学习人数：" + book.studentNum + "人</p>" +
+                        "       </div>" +
+                        "   </a>" +
+                        "</li>";
+                }
+            }
+            element.html(htmls);
+        }
+
+        //显示课程列表函数3
+        function courseRecommend_3(element, nowdata) {
+            var htmls = "";
+            for (var i = 0; i < nowdata.length; i++) {
+                var book = nowdata[i];
+                var dirCode = getDirCode(book.direction);
+                var bookName = encodeURI(book.name);
+                var bookDir = encodeURI(book.direction);
+                if (i == 0) {
+                    htmls +=
+                        "<li class=\"lg\">" +
+                        "   <a href=\"./course_play.html?bookId=" + book.id + "&name=" + bookName + "&price=" + book.price + "&dir=" + bookDir + "\">" +
+                        "       <div>" +
+                        "           <img src=\"../script/tu/手机图标绘制.jpg\" alt=\"\">" +
+                        "           <span>" + book.direction + "</span>" +
+                        "           <em>" + book.name + "</em>" +
+                        "       </div>" +
+                        "   </a>" +
+                        "</li>";
+                } else {
+                    if (i == 3 || i == 6) {
+                        htmls += "<li class=\"right sm\">";
+                    } else {
+                        htmls += "<li>";
+                    }
+                    htmls +=
+                        //"<li>"+
+                        "   <a href=\"./course_play.html?bookId=" + book.id + "&name=" + bookName + "&price=" + book.price + "&dir=" + bookDir + "\">" +
+                        "       <div class=\"front\">" +
+                        "           <img src=\"./library/tu_new/" + book.bookImg + "\" alt=\"\">" +
+                        "           <span>" + book.direction + "</span>" +
+                        "           <em>" + book.name + "</em>" +
+                        "       </div>" +
+                        "       <div class=\"back\">" +
+                        "           <i class=\"" + dirCode + "\"></i>" +
+                        "           <p>" + book.name + "</p>" +
+                        "           <p>讲师：" + book.teacher + " 课时：" + book.time + "课时</p>" +
+                        "           <p>学习人数：" + book.studentNum + "人</p>" +
+                        "       </div>" +
+                        "   </a>" +
+                        "</li>";
+                }
+            }
+            element.html(htmls);
+        }
+        //点击搜索按钮时调用
+        function search() {
+            var searchText = $("#searchText").val().trim();
+            if (searchText == "" || searchText == "您想学习的课程") return;
+            //searchText = decodeURI(searchText);
+            location.href = E_URL + "/web/find.html?search=" + encodeURI(searchText) + "&page=0&date=" + (encodeURI(new Date()));
+        }
+    });
+    //到课程库页面
+    function toCoursePage(direction) {
+        location.href = E_URL + "/web/course_v2.html?dir=" + encodeURI(direction);
+    }
+</script>
+
+
+<div id="ind-cbl" class="ind-cbl" style="top: 671px;"><ul><li class="cb-bg01"><a href="tencent://message/?uin=1309593062&amp;Site=&amp;Menu=yes"><p>在线咨询</p></a></li><li class="cb-bg02"><a href="http://shang.qq.com/wpa/qunwpa?idkey=ad7df75dfbaed76d530be2f80dcfa746a3c6a6a8b93d323e06f9feaae2eb810b" target="_blank"><p>技术咨询</p></a></li><li class="cb-bg03"><p>电话咨询</p><p class="ch-phone">15727392825</p></li><li class="cb-bg04"><p>请关注我</p><p class="ch-2c"></p></li><li class="cb-bg05"><p>返回顶部</p></li></ul></div><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button type="button" id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body>

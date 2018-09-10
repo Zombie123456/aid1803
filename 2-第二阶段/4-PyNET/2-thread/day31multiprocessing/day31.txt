@@ -1,0 +1,56 @@
+day31 2018.5.15
+
+1.multiprocessing模块
+  1.需要将事件封装成函数
+  2.使用multiprocessing提供的类创建新进程
+    1.创建子进程类
+      1.Process(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)
+        1.功能:创建子进程
+        2.参数:
+          1.name:给创建的进程起个名字 默认process-1
+          2.target:目标函数
+          3.args:元组 要给函数传递的参数 位置传参
+          4.kwargs:字典 要给函数传递的参数 键值传参
+        3.p = multiprocessing.Process(target=th1)
+          1.p.start()
+            启动子进程
+          2.p.join([timeout])
+            阻塞等待回收相应的子进程
+          3.p.name
+            进程名称
+          4.p.pid
+            创建的进程的PID号
+          5.p.is_alive()
+            进程状态 返回True or False
+          6.p.daemon = True
+            1.父进程结束时子进程全部结束
+            2.不用写join不会产生僵尸进程
+            3.设置必须在p.start()前
+            4.不是linux/UNIX中所说的守护进程
+              1.守护进程
+                1.生命周期长,随系统创建时创建
+                2.不受前端控制,后台运行
+                3.操作系统进程,或是自动化运行进程居多
+  3.新的进程和对应的函数相关联,进程启动自动执行函数完成事件
+  4.进程回收
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+面试题1)用递归实现斐波那契数列；
+1，1，2，3，5，8，13，21，34...
+f(n) = f(n-1)+f(n-2) n >= 2
+       1             n >= 0 n为自然数
+
+
+面试题2)使用递归来实现从一个List中
+的最大最小值取出来，返回。
+def minMax(L, start, end):
+   """
+	 返回一个元组，用来记录List的最大值和最小值
+	 """
+	 if end-start <= 1:
+	    return (max(L[start],L[end]), 
+			       min(L[start],L[end]))
+	 else:
+	    # 把L分成两部分，分别调用这个方法minMax
+			# 得到(max1,min1)和(max2,min2)
+			# 比较max1,max2可以得到最终的最大值，
+			# 比较min1,min2可以得到最终的最小值，
+
+关于递归调用，可以参考：
+	https://blog.csdn.net/quickzhao3223/article/details/80988797	
+
+Anaconda安装包：
+   打开Anaconda Prompt
+(base) C:\Users\Administrator>pip install builtwith
+# python Code
+import builtwith
+builtwith.parse("http://www.sina.com.cn")
+
+(base) C:\Users\Administrator>pip install python-whois
+# python Code
+import whois
+
+# HASH算法（对某段信息打指纹，能够压缩信息，
+HASH算法是不可逆的）：
+import hashlib
+h = hashlib.md5()
+h.update(("hello world").encode("utf-8"))
+h.hexdigest()
+#'5eb63bbbe01eeed093cb22bb8f5acdc3'
+#h.update(("hello world1").encode("utf-8"))
+#h.hexdigest()
+#'2dbdb2b964bd4c3819120ee1710518f2'
+
+
+# 最简单的爬虫程序
+from urllib import request
+# 默认的user-agent的设置
+print(request.urlopen(
+      request.Request("http://www.sina.com.cn")
+      ).read().decode("utf-8")
+     )
+
+
+关键词：
+    爬虫，深度优先，广度优先，队列，栈，递归；
+
+作业：
+    1.用递归去完成面试题2)；
+		2.复习今天所讲的内容，重点看关键词，
+运行binaryTreeTra.py，对照深度和广度优先的结果；
+    3.把一个文件夹下面的文件，
+拷贝到另一个文件夹下面；（要求：
+1.使用多进程(进程池)或者多线程(线程池)来完成；
+2.怎么证明拷贝的文件是完整的；
+3.这个文件夹下的文件不能少于1000个，
+文件的类型需要多元化，有图片，有视频，有二进制文件
+4.可以加入进度条的考虑；
+5.不要求今天完成，可以在第三天完成作业
+）；

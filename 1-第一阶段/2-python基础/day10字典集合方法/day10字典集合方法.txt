@@ -1,0 +1,65 @@
+day10.txt 2018.4.13
+
+1.字典的成员资格判断:in/not in
+  用in运算符判断一个键是否在字典中
+  列表和字典的in比较:
+    列表in会因长度增加而延长运算时间,而字典不会 
+2.用于字典的内建(built-in)函数:
+  len,max,any,
+  all,min,sum
+3.字典的方法:
+   D.clear()   清空字典
+   D.pop(key)  移除键，同时返回此键所对应的值
+   D.copy()    返回字典D的副本,只复制一层(浅拷贝)
+   D.keys()    返回可迭代的 dict_keys 集合对象
+   D.values()  返回可迭代的 dict_values 值对象
+   D.items()   返回可迭代的 dict_items 对象
+   D.update(D2)   1将字典D2合并到D中，如果键相同，则此键的值取D2的值作为新值
+   D.get(key, default)返回键key所对应的值,如果没有此键，则返回default   
+4.字典推导式:
+  用可迭代对象生成字典
+  {键表达式:值表达式 for 变量 in 可迭代对象 
+  if 真值表达式}  
+5.集合set:
+  是可变的容器,数据对象是唯一的(不可重复)
+  是无序的,元素是不可变对象,集合是可迭代对象,
+  相当于无值的字典
+6.创建集合:
+  set() s={1,2,3}
+  集合的构造函数:
+    set() 创建一个空集合
+    set(iterable) 用可迭代对象创建一个新集合
+7.集合的运算:
+  交集&,并集|,补集-,子集^,超集> <,in ,not in
+  ==,!=
+  s1={1,2,3} s2={2,3,4} 
+  s1^s2={1,4} s1-s2={1}
+    < 一个集合是另一个集合的子集
+  {1,2,3}>{1,2} #True {2,3,1}>{3,2}#True
+8.集合的常用方法:
+  S.add(e)在集合中添加一个新的元素e；如果元素已经存在，则不添加
+  S.remove(e) 从集合中删除一个元素，如果元素不存在于集合中，则会产生一个KeyError错误
+  S.discard(e)  从集合S中移除一个元素e;
+  S.clear()   清空集合内的所有元素
+  S.copy()    将集合进行一次浅拷贝
+  S.pop()     从集合S中删除一个随机元素;如果此集合为空，则引发KeyError异常
+  S.update(s2) 用S与s2得到的全集更新变量S
+  以下内容可以用运算符操作代替  
+  S.difference(s2) 用S-s2运算，返回存在于在S中，但不在s2中的所有元素的集合
+  S.difference_update(s2)   等同于 S = S^s2
+  S.intersection(s2)   等同于S&s2
+  S.intersection_update(s2)   等同于S=S-s2
+  S.isdisjoint(s2)    如果S与s2交集为空返回True,非空则返回False
+  S.issubset(s2)  如果S与s2交集为非空返回True,空则返回False
+  S.issuperset(...)   如果S为s2的子集返回True,否则返回False
+  S.symmetric_difference(s2)  返回对称补集,等同于S^s2
+  S.symmetric_difference_update(s2) 用S与s2的对称补集更新S
+  S.union(s2)     生成S与s2的全集
+9.集合推导式:{表达式 for 变量 in 可迭代对象}
+10.固定集合frozenset:
+  固定集合是不可变,无序的,含有不重复元素的集合
+  fs=frozenset()
+  frozenset(iterable)
+  可用的运算符:&,|,-,^,in,not in,<,<=
+  >,>=,==,!=(与set运算完全相同)
+  方法:集合的全部方法去掉修改集合的方法

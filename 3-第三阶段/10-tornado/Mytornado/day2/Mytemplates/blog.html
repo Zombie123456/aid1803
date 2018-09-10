@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>博客</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .text{
+      width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <ul type='none'>  
+    {% for blog in blogs %}        
+    <li style="margin:30px auto">
+      <table width='100%'>
+        {# 第一行 #}
+        <tr>
+          <td rowspan="4" width='15%'>
+            <table>
+              <tr>
+                <td>
+                  <img src= {% if blog['avatar'] %}
+                              static/img/{{blog['avatar']}}
+                            {% else %}
+                              static/img/default_avatar.png
+                            {% end %}
+                   alt="加载中..." width="128px" height="128px">
+                </td>
+              </tr>
+              <tr>
+                <td align='center'>
+                  <p class="text">{{blog['author']}}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>{{blog['title']}}</td>
+        </tr>
+        {# 第二行 #}
+        <tr>
+          <td>{{blog['tags']}}</td>
+        </tr>
+        {# 第三行 #}
+        <tr>
+          <td>
+            {{blog['content']}}
+          </td>
+        </tr>
+        {# 第四行 #}
+        <tr>
+          <td align='right'>
+            {% if blog['count'] %}
+              评论数量 {{blog['count']}}
+            {% else %}
+              抢个沙发
+            {% end %}
+          </td>
+        </tr>
+      </table>
+    </li>
+    {% end %}
+  </ul>
+</body>
+</html>

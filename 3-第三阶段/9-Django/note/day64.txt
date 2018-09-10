@@ -1,0 +1,84 @@
+day64 2018.6.27
+
+1、使用 forms 模块处理表单
+	1、forms 模块的作用
+		通过 forms 模块，允许将表单控件 与 py 文件相结合，可以自动生成表单控件
+	2、使用 forms 模块
+		1、创建 forms.py 文件
+		2、导入 forms 
+			from django import forms
+		3、创建 class，一个class对应一个表单
+			该class必须继承自forms.Form
+		4、在 class 中创建属性
+			一个属性对应着一个表单控件
+			forms.CharField(label='标题',initial='初始数据')
+      forms.EmailField(label='邮箱')
+      forms.CharField(label='内容', widget=forms.Textarea)
+      forms.BooleanField(label='')
+      TOPIC_CHOICE = (('level1', '好评'), ('level2', '中评'))
+      forms.ChoiceField(label='评论级别', choices=TOPIC_CHOICE)
+	3、在模板中，解析 form 对象
+		1、注意
+			1、需要自定义 <form>
+			2、需要自定义 提交按钮
+		2、处理方法
+			1、手动解析
+				在视图中创建 forms.Form 的对象，并发送到模板中
+        form .forms import *
+				ex:
+					form = RemarkForm()
+					return render(request,'xx.html',locals())
+				手动解析：
+					模板中:
+					{% for field in form %}
+						{{filed.label}} : 表示控件前的文本
+						{{field}} : 表示控件
+					{% endfor %}
+			2、自动解析
+				1、{{form.as_p}}
+					将表单中的每个属性都解析成一个 p 标记，再显示表单的标签以及控件
+				2、{{form.as_ul}}
+					将表单中的每个属性都解析成一个 li 标记，再显示表单的标签以及控件
+					注意：需要自定义 <ul></ul> 或 <ol></ol>
+				3、{{form.as_table}}
+          将表单中的每个属性都解析成一个 tr 标记，再显示表单的标签以及控件
+          注意：需要自定义 <table><table>
+	4、在视图中，通过 forms.Form 快速获取表单数据
+		1、通过 forms.Form 的构造函数，接收 post 数据
+			form = XXXForm(request.POST)
+		2、需要让form通过验证后，再取值
+			form.is_valid() 
+			返回 true : 提交的数据已经通过所有验证，允许接收表单提交的数据
+			返回 false: 提交的数据中有暂未通过验证的
+		3、获取表单提交的数据
+			通过 form.cleaned_data (字典) 接收提交的数据
+			cd = form.cleaned_data
+			print(cd['subject']) # 获取 subject 表单控件的值
+		练习：
+			1、在 forms.py 中追加一个 RegisterForm 类
+			2、增加以下属性，并生成到regsiter.html 显示成表单控件
+				1、uname ：文本框
+				2、upwd ：密码框
+				3、uemail ：邮件框
+				4、uage : 文本框
+			3、在 register.html中增加 form 和 submit
+			4、点击提交按钮时，将数据插入到数据库中
+				创建数据库 day7 ， 创建 Models-Users
+	5、forms 的高级处理
+		将 Models 和 Forms 结合到一起使用
+		1、在 forms.py 中，创建class，继承自 forms.ModelForm
+		2、创建内部类 ：Meta，关联 Form 和 Models
+			属性
+			1、model : 指定要关联的Model类
+			2、fields ：从models中取哪些字段生成控件
+				1、取值 "__all__"，全部的属性都要生成表单控件
+				2、指定一个列表，声明允许生成表单控件的属性名
+			3、labels ：每个属性关联的label，取值为 字典
+				labels = {
+					'属性名':'label文本',
+					'属性名':'label文本',
+				}
+
+
+
+

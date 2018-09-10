@@ -1,0 +1,16 @@
+create database MOSHOU;
+use MOSHOU;
+create table hero(
+id int,
+name char(15),
+sex enum("ÄÐ","Å®"),
+country char(10)
+)default charset=utf8;
+insert into hero values
+(1,"²Ü²Ù","ÄÐ","Îº¹ú"),
+(2,"Ð¡ÇÇ","Å®","Îâ¹ú"),
+(3,"Öî¸ðÁÁ","ÄÐ","Êñ¹ú"),
+(4,"õõ²õ","Å®","¶«ºº"),
+(5,"ÕÔ×ÓÁú","ÄÐ","Êñ¹ú"),
+(6,"ÎºÑÓ","ÄÐ","Êñ¹ú");
+

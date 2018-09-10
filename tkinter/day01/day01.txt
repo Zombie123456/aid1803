@@ -1,0 +1,130 @@
+<< tkinter 教学笔记>>
+day01笔记:
+
+1.GUI(Graphical User Interface) 图形用户接口
+  1.原始操作机算机的方法：
+    input("请输入:")
+    print("hello world")
+  2.GUI 历史:
+    Win3.2  (DOS(Disk Operator System))
+  3.GUI的作用：
+    用图形交互方式操作机算机
+  4.GUI种类:
+    Qt,Gtk, MFC
+  5.python下的GUI种类:
+    tkinter(当前学习)
+    wxpython
+    pyQt
+2.从tkinter的空白窗口说起:
+  1.tkinter是python的模块包，使用时需要导入:
+    import tkinter
+    from tkinter import xxx
+    from tkinter import *
+  2.空白窗口示例：
+    见:code/mainwindow.py
+3.让tkinter GUI 程序启动和运行起来需要 5个步骤：
+  1.导入tkinter模块
+    import tkinter/from tkinter import xxx/* )
+  2.创建一个空白窗口对象，用于容纳整个GUI应用
+  3.在空白窗口对象之上(或其中)构建所有的GUI组件(widget) 及其功能
+  4.通过底层的应用代码将这些GUI组件连接起来
+  5.进入主事件循环
+4.第一个hello world程序：
+  1.示例
+  见:code/02_helloworld.py
+5.tkinter 常见的窗口部件(控件)
+  1.Label, Button, Entry, Checkbutton
+    见:
+      04_widget.py
+  2.Label 控件:
+    1.作用：
+      1.用于显示内容的文字
+      2.用显显示图片信息
+    2.说明：
+      1.Label支持的图片类型为:
+        GIF, PGM, PPM图片
+      2.Label的属性:
+        text: 文字信息
+        bg:   背景色(background)
+        fg:   前景色(foreground)
+        width: 宽(字符宽为单位)
+        height: 高(行为单位)
+        image:  图片
+    3.示例见：
+      code/05_label_widget.py
+    4.图片类:
+      1.PhotoImage
+        file 属性 : 指定图片的路径
+      2.示例见:
+        07_label_image.py
+      3.快捷键说明：
+        ctrl + c  终止程序(转为僵尸状态)
+        ctrl + z 停止程序（转为停止状态,可用fg命令恢复运行)
+    5.tkinter颜色:
+      1.几乎全部的表示颜色的英文的字符串
+        'red', 'green', 'blue', 'yellow', 'gray'..
+      2.十六进制的RGB(Red, Green, Blue)红绿蓝三原色显示
+        "#FF0000"  红色  (24bit色)
+        "#00FF00"  绿色
+        "#0000FF"  蓝色
+      3.见: 08_colors.py
+  3.Button 按钮控件
+    1.作用：
+      给计算机提供一个命令输入
+    2.属性：
+      text : 文字
+      fg: 前景色
+      bg: 背景色
+      width: 宽(像素)
+      image: 图片
+      bitmap: 位图
+        'error'类似钉子头
+        'info'类似i
+        'question'类似?
+      command: 执行回调操作 绑定一个函数
+  4.Entry控件
+    1.作用：
+      用于获取用户的文本输入(写input类似)
+    2.属性:
+      fg : 文字颜色
+      bg : 背景色
+      borderwidth: 边框宽度
+    3.方法：
+    　　get()  获取文本框的内容
+    4.示例见：
+      12_entry.py
+  5.Checkbutton控件:
+    1.属性:
+      text: 文本内容
+      bg/fg : 略
+      variable : tkinter的整数变量
+      command: 回调函数
+      font : 字体(字体，颜色，样式)
+    2.IntVar变量:
+      1.属性:
+        value: 整数值，默认为0
+      2.示例见: 13_checkbutton.py
+    3.字体 font
+      1.示例见:
+        14_checkbutton_font.py
+6.练习：
+  1.尝式使用tkinter中Tk()返回的对象的Title方法是干什么用的:
+    root = tkinter.Tk()
+    root.title("XXXXXXXXXXXX")
+    ......
+    root.mainloop()
+  2.练习：
+    尝试查看tkinter的文档帮助：
+    >>> import tkinter
+    >>> help(tkinter)
+    >>> help(tkinter.Button)
+    >>> help(tkinter.Label)
+    >>> help(tkinter.Tk)
+    ....
+
+
+
+
+
+
+

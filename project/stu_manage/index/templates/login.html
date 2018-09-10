@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎使用教务管理系统</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      width: 990px;
+      font: 18px '微软雅黑';
+      margin: 0 auto;
+    }
+    #head{
+      background-color: #51B7EC;
+      color: #fff;
+      height: 50px;
+    }
+    #head>p{
+      line-height: 50px;
+      font-size: 20px;
+      text-align: center;
+    }
+    #foot>p{
+      font-size: 12px;
+      text-align: center;
+    }
+    #form{
+      width: 400px;
+      margin: 0 auto;
+    }
+    #form p{
+      margin: 30px 0;
+    }
+    .clear{
+      clear: both;
+    }
+    .lf{
+      float: left;
+    }
+    .rt{
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <div id="head">
+    <p>教务管理系统登录界面</p>
+  </div>
+  <form action="/login" method="post" id="form">
+    <p></p>
+    <p>
+      账号:
+      <input type="text" name="uname">
+    </p>
+    <p>
+      密码:
+      <input type="password" name="upwd" id="">
+    </p>
+    <div class="clear" style="width: 300px; margin-bottom: 30px;">
+      <p class="lf">
+        <input type="radio" name="idcard" id="" checked>学生登录
+      </p>
+      <p class="rt">
+        <input type="radio" name="idcard" id="tea">教师登录
+      </p>
+    </div>
+    <p>
+      <input type="submit" value="登录">
+    </p>
+  </form>
+  <div id="foot">
+    <p>
+      Copyright © 1999-2018, All Rights Reserved
+    </p>
+  </div>
+</body>
+</html>

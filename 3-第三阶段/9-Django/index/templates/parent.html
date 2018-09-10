@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/static/css/parent.css"> 
+  {% block css %}
+  {% endblock %}
+</head>
+<body>
+  <!-- 头一 -->
+  <div class="clear" id="parent_head">
+    <!-- 左:地区 -->
+    <div class="lt" id="t1_d1">
+      <a href="#" id="area">上海<span></span></a>
+      <span id="t1_s1">满百包邮(环郊内)</span>
+      <span id="t1_s2">星夜达</span>
+    </div>
+    <!-- 右:选项 -->
+    <div id="t1_d2" class="rt">
+      <ul type="none" class="rt">
+        <li class="lt" id="gygg">果园公告</li>
+        <li class="lt" id="qkdh">券卡兑换</li>
+        <li class="lt" id="sjgy">手机果园</li>
+      </ul>
+      <a href="{% url 'register' %}" class="rt" id="t1_d2_a2">,&nbsp;[注册有惊喜]</a>
+      <a href="{% url 'login' %}" class="rt" id="t1_d2_a1">[登录]</a>
+    </div>
+  </div>
+  {% block replace %}
+  {% endblock %}
+ <!-- 特色介绍 -->
+ <ul type="none" class="clear" id="parent_ul">
+    <li class="lt">
+      <img src="/static/img/ts1.png" alt="正在奋力加载中...">
+      <div class="rt">
+        <b>全球原产地直购</b>
+        <p>100%原产地直购保证</p>
+      </div>
+    </li>
+    <li class="lt">
+      <img src="/static/img/ts1.png" alt="正在奋力加载中...">
+      <div class="rt">
+        <b>全球原产地直购</b>
+        <p>100%原产地直购保证</p>
+      </div>
+    </li>
+    <li class="lt">
+      <img src="/static/img/ts1.png" alt="正在奋力加载中...">
+      <div class="rt">
+        <b>全球原产地直购</b>
+        <p>100%原产地直购保证</p>
+      </div>
+    </li>
+    <li class="lt">
+      <img src="/static/img/ts1.png" alt="正在奋力加载中...">
+      <div class="rt">
+        <b>全球原产地直购</b>
+        <p>100%原产地直购保证</p>
+      </div>
+    </li>
+  </ul>
+  <!-- 网站导航 -->
+  <div id="parent_dh">
+    <!-- 上 -->
+    <div id="up" class="clear">
+      <!-- 左 -->
+      <div class="clear" id="left">
+        <div class="lt">
+          <p>
+            <img src="/static/img/二维码.jpg" alt="正在奋力加载中..." >
+          </p>
+          <p class="clear">天天果园官方微信</p>
+        </div>
+        <div class="lt">
+          <p><img src="/static/img/二维码.jpg" alt="正在奋力加载中..."></p>
+          <p class="clear">天天果园app</p>
+        </div>
+      </div>
+      <!-- 右 -->
+      <div id="right">
+        <ul>
+          <li><a href="#">购物指南</a></li>
+          <li><a href="#">配送说明</a></li>
+          <li><a href="#">售后服务</a></li>
+          <li><a href="#">企业服务</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">新用户注册</a></li>
+          <li><a href="#">运费说明</a></li>
+          <li><a href="#">退换货规则</a></li>
+          <li><a href="#">企业订购</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">新用户注册</a></li>
+          <li><a href="#">运费说明</a></li>
+          <li><a href="#">退换货规则</a></li>
+          <li><a href="#">企业订购</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">新用户注册</a></li>
+          <li><a href="#">运费说明</a></li>
+          <li><a href="#">退换货规则</a></li>
+          <li><a href="#">企业订购</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <!-- 下 -->
+    <div id="down">
+      <span>版权所有 &copy;2018上海天天鲜果电子商务 保留所有权利|沪ICP备12042163</span>
+      <p>天天果园 鲜果网购</p>
+      <div>
+        <img src="/static/img/guansh.gif" alt="正在奋力加载中...">
+        <img src="/static/img/guan.png" alt="正在奋力加载中...">
+      </div>
+    </div>
+  </div>
+  {% block js %}
+  {% endblock %}
+</body>
+</html>

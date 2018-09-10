@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>水浒q传模拟器</title>
+  <style>
+    input{
+      width: 80px;
+    }
+  </style>
+</head>
+<body>
+    <table>
+      {% comment %} 职业 {% endcomment %}
+      <tr>
+        <td>职业
+          <select name="" id="zyzy">
+            <option value="1">剑客</option>
+            <option value="2">术士</option>
+            <option value="3">武师</option>
+            <option value="4">道士</option>
+            <option value="5">浪子</option>
+            <option value="6">医师</option>
+            <option value="11">剑圣</option>
+            <option value="21">法王</option>
+            <option value="31">武神</option>
+            <option value="41">道祖</option>
+            <option value="51">游仙</option>
+            <option value="61">神医</option>
+            <option value="111">剑仙</option>
+            <option value="112">剑魔</option>
+            <option value="211">法神</option>            
+            <option value="212">魔王</option>
+            <option value="311">武魂</option>
+            <option value="312">武痴</option>
+            <option value="411">天师</option>
+            <option value="412">道圣</option>
+            <option value="511">潜影</option>
+            <option value="512">邪音</option>
+            <option value="611">仁心</option>
+            <option value="612">巫医</option>
+          </select>
+        </td>
+        <td>等级<input type="text" name="" id="zydj"></td>
+        <td>转生
+          <select name="" id="zyzs">
+            <option value="0">0次</option>
+            <option value="1">1次</option>
+            <option value="2">2次</option>
+            <option value="3">3次</option>
+            <option value="4">4次</option>
+            <option value="5">5次</option>
+          </select>
+        </td>
+        <td>换潜能<input type="text" name="" id="zyhqn"></td>
+        <td>总潜能<input type="text" name="" id="sxzqn"></td>
+        <td><input type="button" value="确定" onclick="qn()"></td>
+      </tr>
+      {% comment %} 分配属性 {% endcomment %}
+      <tr>
+        <td>力量<input type="text" name="" id="fpll"></td>
+        <td>体质<input type="text" name="" id="fptz"></td>
+        <td>心力<input type="text" name="" id="fpxl"></td>
+        <td>敏捷<input type="text" name="" id="fpmj"></td>
+        <td>耐力<input type="text" name="" id="fpnl"></td>
+        <td colspan="2">
+          <input type="button" value="确定分配" onclick="fpsx()" style="width:100px">
+        </td>
+      </tr>
+      {% comment %} 头 {% endcomment %}
+      <tr>
+        <td>头盔</td>
+        <td>力量<input type="text" name="" id="tkll"></td>
+        <td>体质<input type="text" name="" id="tktz"></td>
+        <td>心力<input type="text" name="" id="tkxl"></td>
+        <td>敏捷<input type="text" name="" id="tkmj"></td>
+        <td>耐力<input type="text" name="" id="tknl"></td>
+        <td>精神<input type="text" name="" id="tkjs"></td>
+        <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 腰 {% endcomment %}
+      <tr>
+          <td>腰带</td>
+          <td>力量<input type="text" name="" id="ydll"></td>
+          <td>体质<input type="text" name="" id="ydtz"></td>
+          <td>心力<input type="text" name="" id="ydxl"></td>
+          <td>敏捷<input type="text" name="" id="ydmj"></td>
+          <td>耐力<input type="text" name="" id="ydnl"></td>
+          <td>HP<input type="text" name="" id="ydhp"></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 衣服 {% endcomment %}
+      <tr>
+          <td>衣服</td>
+          <td>力量<input type="text" name="" id="yfll"></td>
+          <td>体质<input type="text" name="" id="yftz"></td>
+          <td>心力<input type="text" name="" id="yfxl"></td>
+          <td>敏捷<input type="text" name="" id="yfmj"></td>
+          <td>耐力<input type="text" name="" id="yfnl"></td>
+          <td>防御力<input type="text" name="" id="yffy"></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 护腕 {% endcomment %}
+      <tr>
+          <td>护腕</td>
+          <td>力量<input type="text" name="" id="hwll"></td>
+          <td>体质<input type="text" name="" id="hwtz"></td>
+          <td>心力<input type="text" name="" id="hwxl"></td>
+          <td>敏捷<input type="text" name="" id="hwmj"></td>
+          <td>耐力<input type="text" name="" id="hwnl"></td>
+          <td>命中率<input type="text" name="" id="hwmzl"></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 鞋 {% endcomment %}
+      <tr>
+          <td>鞋子</td>
+          <td>力量<input type="text" name="" id="xzll"></td>
+          <td>体质<input type="text" name="" id="xztz"></td>
+          <td>心力<input type="text" name="" id="xzxl"></td>
+          <td>敏捷<input type="text" name="" id="xzmj"></td>
+          <td>耐力<input type="text" name="" id="xznj"></td>
+          <td>闪避<input type="text" name="" id="xzsb"></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 武器 {% endcomment %}
+      <tr>
+          <td>武器</td>
+          <td>力量<input type="text" name="" id="wqll"></td>
+          <td>体质<input type="text" name="" id="wqtz"></td>
+          <td>心力<input type="text" name="" id="wqxl"></td>
+          <td>敏捷<input type="text" name="" id="wqmj"></td>
+          <td>耐力<input type="text" name="" id="wqnl"></td>
+          <td>攻击力<input type="text" name="" id="wqgj"></td>
+          <td>命中率<input type="text" name="" id="wqmzl"></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 项链 {% endcomment %}
+      <tr>
+          <td>项链</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td>SP<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 戒指 {% endcomment %}
+      <tr>
+          <td>戒指</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td>灵巧<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 面具 {% endcomment %}
+      <tr>
+          <td>面具</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td>HP<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 披风 {% endcomment %}
+      <tr>
+          <td>披风</td>
+          <td>HP<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 纹章 {% endcomment %}
+      <tr>
+          <td>纹章</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 坐骑 {% endcomment %}
+      <tr>
+          <td>坐骑</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td>助攻<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 凤翼 {% endcomment %}
+      <tr>
+          <td>凤翼</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td>攻击<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 凰羽 {% endcomment %}
+      <tr>
+          <td>凰羽</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td>攻击<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 星神 {% endcomment %}
+      <tr>
+          <td>星神</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 黄金甲 {% endcomment %}
+      <tr>
+          <td>黄金甲</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 阵营 {% endcomment %}
+      <tr>
+        <td>阵营技能</td>
+        <td>强健体魄<input type="text" name="" id=""></td>
+        <td>矫健身手<input type="text" name="" id=""></td>
+      </tr>
+      {% comment %} 星宿 {% endcomment %}
+      <tr>
+          <td>星宿</td>
+          <td>力量<input type="text" name="" id=""></td>
+          <td>体质<input type="text" name="" id=""></td>
+          <td>心力<input type="text" name="" id=""></td>
+          <td>敏捷<input type="text" name="" id=""></td>
+          <td>耐力<input type="text" name="" id=""></td>
+          <td>HP<input type="text" name="" id=""></td>
+          <td><input type="button" value="确定" onclick="ces()"></td>
+      </tr>
+      {% comment %} 帮派 {% endcomment %}
+      <tr>
+        <td>帮派</td>
+        <td>帮派绝技<input type="text" name="" id=""></td>
+      </tr>
+      {% comment %} 剑客 {% endcomment %}
+      <tr>
+        <td>剑客技能</td>
+        <td>护心决<input type="text" name="" id=""></td>
+        <td>强心决<input type="text" name="" id=""></td>
+        <td>剑术修炼<input type="text" name="" id=""></td>
+        <td>凝神决<input type="text" name="" id=""></td>
+      </tr>
+      {% comment %} 术士 {% endcomment %}
+      <tr>
+          <td>术士技能</td>
+          <td>修心<input type="text" name="" id=""></td>
+        </tr>
+      {% comment %} 武师 {% endcomment %}
+      <tr>
+          <td>武师技能</td>
+          <td>拳法<input type="text" name="" id=""></td>
+        </tr>
+      <tr>
+        <td colspan="3">
+          <input type="button" value="普通职业" onclick="main()" style="width:200px">
+        </td>
+        <td colspan="3">
+          <input type="button" value="星神职业" onclick="mainxs()" style="width:200px">
+        </td>
+      </tr>
+      {% comment %} 属性 {% endcomment %}
+      <tr>
+          <td>力量<input type="text" name="" id="sxll"></td>
+          <td>体质<input type="text" name="" id="sxtz"></td>
+          <td>心力<input type="text" name="" id="sxxl"></td>
+          <td>敏捷<input type="text" name="" id="sxmj"></td>
+          <td>耐力<input type="text" name="" id="sxnl"></td>
+        </tr>
+      <tr>
+        <td>生命<input type="text" name="" id="hp"></td>
+        <td>技能值<input type="text" name="" id="sp"></td>
+      </tr>
+      <tr>
+        <td>攻击<input type="text" name="" id="gj"></td>
+        <td>命中<input type="text" name="" id="mz"></td>
+        <td>防御<input type="text" name="" id="fy"></td>
+        <td>精神<input type="text" name="" id="js"></td>
+        <td>灵巧<input type="text" name="" id="lq"></td>
+        <td>闪避<input type="text" name="" id="sb"></td>
+      </tr>
+    </table>
+  <script src="http://www.w3school.com.cn/jquery/jquery.js"></script>
+  <script src="/static/js/moni.js"></script>
+</body>
+</html>

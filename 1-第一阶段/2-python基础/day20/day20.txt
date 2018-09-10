@@ -1,0 +1,109 @@
+day20.txt 2018.4.27
+ 
+类变量:
+  是类的属性,此变量属于类，不属于此类的实例
+  类变量可以通过该类直接访问
+  类变量可以通过类的实例直接访问
+  类变量可以通过此类的对象的__class__属性间接访问
+  class Human:
+      home = "地球"  # <<---类变量
+  h1 = Human()  # 创建实例
+  print(h1.home)  # "地球"
+  h2 = Human()
+  h2.home = "中国"  # 为h2绑定的对象添加 home变量
+  print(h2.home)  # "中国"
+  print(h1.home)  # "地球"
+  h2.__class__.home = "北京"  # 修改Human类变量home
+  print(h1.home)  # 北京
+
+类的__slots__属性:
+  限定一个类创建的实例只能有固定的属性(实例变量)
+  含有__slots__列表的类所创建的实例对象没有__dict__字典,即此实例不用字典来存储实例变量(属性)
+  __slots__属性是一个列表,列表的值是字符串
+  class Student:
+      __slots__ = ['name', 'score']
+  s1 = Student()
+  s1.name = "小张"  # 正确
+  s1.age = 20  # 错误,age不在__slots__列表中
+
+类方法 @classmethod
+  类方法是操作类的方法,类方法属于类,不属于该类创建的对象
+  类方法需要使用@classmethod装饰器定义
+  类方法的第一个参数用来绑定类，约定写为cls
+  类和对象实例都可以调用类方法.
+  类方法不能访问此类创建的类的属性
+  class A:
+      v = 0
+      @classmethod
+      def set_v(cls, value):
+          cls.v = value
+      @classmethod
+      def get_v(cls):
+          return cls.v
+  print(A.get_v()) #0
+  A.v=1
+  print(A.get_v()) #1
+  A.set_v(100)
+  print(A.get_v()) #100
+  a=A()
+  a.set_v(200)
+  print(A.get_v()) #200
+
+静态方法 @staticmethod
+  静态方法定义在类的内部的函数，此函数作用域是类的内部
+  静态方法需要使用@staticmethod装饰器定义
+  静态方法与普通函数定义相同，不需要传入self实例参数和cls类参数
+  静态方法只能凭借类和实例调用
+  静态方法不能访问类变量和实例变量
+  class A:
+      @staticmethod
+      def myadd(a, b):
+          return a + b
+  print(A.myadd(100, 200)) #300
+  a = A()
+  print(a.myadd(300, 400)) #700
+
+继承inheritance和派生derived
+  继承是从已有类中派生出新类,新类具有原类的数据属性和行为,并能扩展新的能力
+  派生是从一个已有的类衍生出新类,在新的类上添加新的属性和行为
+  用继承派生机制可以将一些共有功能加在基类中,实现代码共享
+  不改变超类的代码基础上,改变原有的功能
+  基类(base class)/超类(super class)/父类(father class)/派生类(derived class)/子类(child class)
+
+单继承的语法:
+   class 类名(超类名):
+       语句块
+
+继承说明:
+  任何类都直接或间接的继承自object类
+  object类是一切类的超类
+
+类的__base__属性
+  __base__属性用来记录此类的基类
+
+覆盖 override
+  覆盖是指在有继承关系的类中,子类中实现了与基类(超类)同名的方法,在子类实例调用该方法时,实际调用的是子类中的覆盖版本,这种现象叫覆盖
+  class A:
+      def say_hello(self, what):
+          print("你好:", what)
+  class B(A):
+      def say_hello(self, what):  #此方法将覆盖父类的方法
+          print("hello:", what)
+  b=B()
+  A.say_hello(b,'北京')
+
+super函数:
+  返回超类的实例,用超类实例来间接调用其父类的方法
+  只能调用父类
+  super(类型type, obj)
+  返回绑定超类的super实例(要求obj必须为type类型的实例)
+  super()  返回绑定超类的实例,等于同: super(__class__, 实例方法的第一个参数), 必须用在方法内
+  super(B, self).say_hello()  方法内外均可
+  super().say_hello() 方法内
+
+
+
+
+
+
+

@@ -1,0 +1,170 @@
+day01 2018.3.30
+weimz@tedu.cn
+qq:88126169
+1.三大操作系统:
+  1.UNIX:
+    1.AIX(IBM)
+    2.SOLARIS(SUN/ORACLE)
+    3.MAC OS X(APPLE)
+    4.IOS(APPLE)
+  2.linux
+     1.Ubuntu:账号:terena,密码:terena
+     2.redhat
+     3.centos
+     4.android(安卓)
+  3.WINDOWS
+2.计算机的组成:
+  1.硬件:
+    1.处理器(CPU)
+    2.运行内存ram
+    3.主板(总线设备)
+    4.外部存储设备(硬盘.U盘)
+    5.输入输出设备
+  2.软件:
+    1.操作系统软件 内核模式
+    2.标准库软件     用户模式
+    3.应用软件
+3.vmware 
+  开启bios里的虚拟机支持功能:
+  virtual tech[disable/enable]
+4.打开终端和退出终端:
+  1:打开终端
+  2:搜索命令gnome-terminal或’终端退出:$ exit
+5.linux命令格式:
+  1.命令名 [选项] [参数]
+    1.pwd:当前的工作路径
+    2.ls -l
+    3.cd /
+    4.ls /usr/bin -l
+    5.说明:有些命令没有选项和参数
+6.目录树:
+  1.根:root 
+  linux:/
+  Windows:
+  c:
+  d:
+  ……
+  /usr/bin/python3(linux)
+  c:\windows\system32\calc.exe(windows)
+7.路径:
+  1.路径是用来记录一个文件或一个文件夹的字符串
+  2.路径分为2种
+    1.绝对路径:以’/’字符开头的路径为绝对路径
+      绝对路径通常能标识一个唯一的文件或文件夹
+    2.相对路径:不以’/’字符开头的路径为相对路径
+       开始符号:
+       以文件夹/文件名开头
+       . 开头当前文件夹
+       .. 开头(上一级文件夹)
+       ~用户主目录(家目录)
+    3.示例:
+      cd /usr/bin #进入/usr/bin目录
+      ls -l ./python3 查看当前python3文件的信息
+      cd ..
+      ls -l
+8.pwd命令:
+  作用:
+  用于显示当前操作的路径位置(工作路径)
+9.cd命令:
+  1.作用:改变当前的工作路径(进入某个目录)
+  2.格式:
+    cd [目录名]
+  3.示例:
+    cd /home/tarena
+    cd /#进入根目录
+    cd #默认进入用户主目录
+    cd ..进入上一层目录
+    cd - #进入到进入此目录之前那个目录 
+10.ls命令:
+  1.作用:显示文件或文件夹的信息
+  2.格式:ls [选项] [文件名/文件夹名]
+  3.常用选项:
+    -l 列表显示文件的详细信息
+    -l-a 显示全部文件/文件夹信息
+  4.示例:
+   ls -l /usr/bin/python3
+   ls ~
+   ls -a /home/tarena
+11.mkdir 命令:
+  1.作用:创建一个或多个文件夹(也叫目录)
+  2.格式:mkdir 文件名1 文件名2 ...
+  3.示例:mkdir a b c d
+  4.常用选项:
+    -p 如果中间文件夹不存在,则逐级创建所有文件夹
+  5.示例:
+    mkdir -p a/b/c/d
+12.rmdir命令:
+  1.删除一个或多个文件夹(文件夹内必须没有文件)
+  2.格式:同mkdir
+  3.选项:
+    -p 如果中间的文件也为空,则逐级删除中间的空文件夹
+  4.示例:
+    rmdir a b c d 
+    rmdir -p code/a/b/c/d
+13.tree命令:
+  1.作用:显示目录树
+  2.安装方法:$ sudo apt install tree<回车>
+  3.输入密码:tarena
+  4.示例:
+    $ tree #等于tree .
+    $ tree /home/tarena/aid1803  
+14.touch命令:
+  1.作用:
+    1.如果文件不存在,则创建一个空文件
+    2.如果文件或目录存在,则用系统时间更新他的修改时间
+  2.示例:
+    touch abcd.txt
+    touch abcd,txt dcba.txt
+15.rm命令:
+  1.作用:
+    删除文件或文件夹
+  2.格式:
+    rm [选项] 文件/文件夹
+  3.常用选项:
+    -r 递归删除文件夹内部的全部文件或文件夹
+    -i 删除前给出提示(y代表yes,n代表no)
+    -f 强制删除,不给出任何提示
+ 
+练习:
+  1进入到/usr/bin目录下,查看是否有Python3和ls这两个文件
+  2在进入到/etc目录下,查看passwd这个文件的大小是多少直接?
+  3回到用户主目录下
+  4查看当前目录下都有哪些隐藏文件
+  5创建一个文件夹"aid1803"
+  6在aid803下创建一个文件夹linux
+  7在aid803/linux下创建三个文件夹:day01 day02 day03
+  8在day01下创建day01.txt,在day02下创建day02.txt在day03下创建day03.txt
+  9删除aid803/linux/day03文件夹
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

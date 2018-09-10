@@ -1,0 +1,28 @@
+day43 2018.5.31
+
+1.框架
+  即模板
+2.__call__
+  类实例化的对象可直接调用
+  test = CallTest()
+  tset()
+  类似于函数的调用
+3.httpserver模块
+  1.python2 BaseHTTPServer
+  2.python3 http.server
+4.pdb调试
+  1.pdb模块 标准库模块
+  2.断点设置 单步调试 进入函数查看当前代码段 查看变量值
+  3.命令
+    1.break,b 设置断点
+    2.continue,c 继续执行到下一个断点停止
+    3.list,l 查看当前代码段
+    4.step,s 进入函数
+    5.exit,q 退出
+    6.next,n 执行下一行
+    7.pp 变量名 打印变量
+    8.help 查看帮助
+  4.pdb.set_trace()
+    设置断点
+  5.python3 -m pdb 运行的程序名
+

@@ -1,0 +1,12 @@
+{% extends 'parent.html' %}
+
+{% block replace %}
+  <form action="/register/" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <p>
+      <input type="submit" value="注册">
+    </p>
+  </form>
+{% endblock replace %}
+    

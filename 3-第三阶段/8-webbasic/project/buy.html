@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+    <style>
+        #tbl{
+            width:600px;
+            border:1px solid #000;
+            border-collapse:collapse;
+        }
+        #tbl td{
+            border:1px solid #000;
+        }
+    </style>
+ </head>
+ <body>
+  <p>
+    <input type="text" id="gname" placeholder="商品名称">
+    <input type="text" id="gprice" placeholder="商品价格">
+    <input type="text" id="gcount" placeholder="购买数量">
+    <button id="buy">购买</button>
+  </p>
+  <table id="tbl">
+    <thead>
+      <tr>
+        <td>商品名称</td>
+        <td>商品价格</td>
+        <td>购买数量</td>
+        <td>操作</td>
+      </tr>
+    </thead>
+    <tbody id="body"></tbody>
+  </table>
+  <script src="../jquery-1.11.3.js"></script>
+  <script>
+    $("#buy").bind("click",btnBuy);
+    function btnBuy(){
+      var $gname = $("#gname").val();
+      var $gprice = $("#gprice").val();
+      var $gcount = $("#gcount").val();
+      var $btnUpdate = $("<button>修改</button>")
+      var $btnDelete = $("<button>删除</button>");
+      var $tr = $("<tr></tr>");
+      var $td1 = $("<td>"+$gname+"</td>");
+      var $td2 = $("<td>"+$gprice+"</td>");
+      var $td3 = $("<td>"+$gcount+"</td>");
+      var $td4 = $("<td></td>");
+      $td4.append($btnUpdate);
+      $td4.append($btnDelete);
+      $tr.append($td1);
+      $tr.append($td2);
+      $tr.append($td3);
+      $tr.append($td4);
+      $("#body").append($tr);
+      // 修改函数
+      $btnUpdate.bind("click",update);
+      function update(){
+        if($btnUpdate.text()=="修改"){
+          $btnUpdate.text("确定");
+          var $inp = $("<input type='text'>");
+          $inp.val($td3.text())
+          $td3.text('');
+          var $btnAdd = $("<button width='10px'>+</button>");
+          $btnAdd.click(function(){
+            $va = $inp.val();
+            $inp.val(++$va);
+          });
+          var $btnMinu = $("<button width='10px'>-</button>");
+          $btnMinu.click(function(){
+            $vm = $inp.val();
+            if($vm>1)
+              $vm--;
+            $inp.val($vm);
+          });
+          $td3.append($inp);
+          $td3.append($btnAdd);
+          $td3.prepend($btnMinu);
+        }else{
+          $btnUpdate.text("修改");
+          $td3.text($td3.children("input").val());
+        }
+      }
+      // 删除函数
+      $btnDelete.click(del);
+      function del(){
+        if(confirm("确认删除吗?"))
+          $tr.remove();
+      }
+    } 
+  </script>
+ </body>

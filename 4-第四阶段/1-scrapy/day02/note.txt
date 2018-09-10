@@ -1,0 +1,95 @@
+队列，栈，深度优先，广度优先，递归：
+	队列(FIFO First In First Out)，一个口进另一口出，
+	栈(LIFO, Last In First Out)，同一个口既进也出；
+	是两种数据结构,这是一种逻辑上的结构；
+	深度优先，广度优先是两种算法；
+	递归是一种思想，深度优先使用了递归的思想；
+	栈这种结构可以实现递归的效果；
+	广度优先使用了队列这种结构来实现它；
+
+
+				# 0和1相当于一个开关，为0时打开b开关，为1时打开a开关
+				#0 and 'a' or 'b'
+				#'b'
+				#1 and 'a' or 'b'
+				#'a'
+				#lambda s:""
+				# str的方法:
+				# join,split
+				# ljust
+					##s = 'abc'
+					##s.ljust(10)
+					##'abc       '
+
+import requests
+
+
+def printInfo(s, collapse=0):
+    processFun = collapse and (lambda s:" ".join(s.split())) or (lambda s:s)
+    return processFun(s)
+    
+def info(object, spacing=15, collapse=0):
+    """
+    遍历一遍Object对象，把里面可以被调用的方法及方法
+    的doc string打印出来
+    """
+    # 第一步：提取出当前Object可以被调用的方法列表
+    methodList = [method for method 
+                  in dir(object) if callable(
+                  getattr(object, method))
+                  ]
+    #print(methodList)
+    
+    # 需要把doc string的方法按照一个的格式提取出来
+    processFun = collapse and (
+		                lambda s:" ".join(s.split())) 
+		             or (lambda s:s)
+             
+    # 打印出方法的名称及其文档的说明
+    print( '\n'.join(["%s %s"%( method.ljust(spacing) , 
+            processFun(str(getattr(object, method).__doc__)) ) 
+    for method in methodList]) )
+    
+#info(requests)
+s = "str" 
+info(s, collapse=1)
+#print(printInfo(s.ljust.__doc__, 1))
+
+
+
+https://www.baidu.com/s?
+ie=utf-8&
+f=8&
+rsv_bp=0&
+rsv_idx=1&
+tn=baidu&
+wd=python%E7%88%AC%E8%99%AB
+
+
+
+作业：
+   1)使用百度过来的user-agent大全，做一个
+UA(user-agent)池，对新浪的首页发起10次请求，
+每次发起请求的UA需要随机从池中取出；
+   2)使用json的操作方式来解析下面的JSON字符串：
+{"translateResult":[[{"tgt":"你好","src":"hello"}]],
+"errorCode":0,"type":"en2zh-CHS",
+"smartResult":{"entries":["","n. 表示问候， 
+惊奇或唤起注意时的用语\r\n","int. 喂；
+哈罗\r\n","n. (Hello)人名；
+(法)埃洛\r\n"],"type":1}}
+把"你好"的信息提取出来；
+
+XPath语言：可以用来提取xml,html信息的语言
+在Python中是使用lxml这个库来实现的；
+一个在爬虫中使用XPath的万能方法：
+    在浏览器中Copy XPath;
+缺点：可读性差，可维护性差；
+
+使用BeautifulSoup，一定要记住一个方法：
+findAll
+比如soup.findAll('p', align="blah")
+相对于XPath而言，好处是：可读性好，可维护性好；
+缺点：慢；
+
+RSA算法：

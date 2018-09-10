@@ -1,0 +1,168 @@
+day61 2018.6.24
+
+1、模板
+2、模型
+  6、字段类型 与 字段选项
+    1、字段类型(Field Type)
+      1、BooleanField()
+      2、CharField()
+      3、DateField() 日期
+      4、DateTimeField() 日期时间
+      5、DecimalField(max_digits=None,decimal_places=None) 高精度浮点
+      6、EmailField() # 存电子邮件 - varchar
+      7、FloatField()
+      8、ImageField(upload_to=None) # 存图片路径 - varchar
+      9、IntegerField()
+      10、URLField()  # 存网站地址 - varchar
+      11、TextField() # 存大量数据 - text
+    2、字段选项(Field Option)
+      1、max_length
+        指定数据的最大长度
+      2、default	
+        为当前属性(字段)指定默认值
+      3、null
+        指定当前属性(字段)是否允许为空，默认是false
+  7、数据的版本切换
+    1、./manage.py migrate
+      执行所有应用中最新版本的 数据库中间文件
+    2、./manage.py migrate 应用名称 版本号
+      ./manage.py migrate index 0002
+      执行 index 应用中 版本号为 0002的中间文件
+  8、通过数据库自动导出Models
+    ./manage.py inspectdb > 文件名.py
+  9、模型中的 CRUD
+	  所有的操作均在 视图中(Views) 执行
+    1、通过ORM向DB中增加数据
+      1、Entry.objects.create(属性=值,属性=值)
+        Entry:具体要操作的Models类
+        ex:
+          Author.objects.create(name='sf.zhang',age=85)
+      2、创建一个 Models 对象，并通过 save() 完成增加
+        obj = Entry(属性=值,属性=值)
+        obj.save()
+      3、使用字典构建对象，并调用其 save() 完成增加
+        dic = {
+          '属性1':'值1',
+          '属性2':'值2',
+        }
+        obj = Entry(**dic)
+        obj.save()
+      练习：
+        使用三种方式 分别向 index_book,index_publisher 中各增加三条数据
+    2、查询操作(重难点)
+      通过 Entry.objects 调用查询接口
+      1、基本查询操作
+        语法：all()
+        用法：Entry.objects.all()
+        返回: QuerySet (查询结果集，封装了若个字典的一个列表)
+        ex:
+          authors = Author.objects.all();
+          等同于：select * from [index_author];
+      2、查询指定列操作
+        语法：values('列1','列2',...)
+        用法：Entry.objects.values('列1','列2')
+        返回：QuerySet
+        ex:
+          Author.objects.values('names','age')
+          等同于：select names,age from index_author
+        注意：
+          values() 可以用在所有的查询结果集的方法的后面
+          Author.objects.all().values('列1','列2')
+      3、order_by()
+        作用：排序
+        语法：order_by('-列1','列2',...)
+          列前加 "-" 表示降序
+          返回一个对象
+        用法：
+          Entry.objects.order_by('列')
+          Entry.objects.all().order_by('列')
+        ex:
+          goodstype=GoodsType.objects.order_by('-age')
+          for au in goodstype:
+              print(au.id, au.title)
+      4、对条件取反
+        语法：exclude()
+        用法：Entry.objects.exclude(条件)
+        ex:
+          1、Author.objects.exclude(id=3)
+            select * from author where not (id=3)
+          2、Author.objects.exclude(id=3,age=85)
+            select * from author where not (id=3 and age = 85)
+      5、根据条件查询部分行数据(重难点)
+        语法：filter(参数)
+        用法：Entry.objects.filter(参数)
+        1、使用 Entry 中的属性作为查询参数
+          多个参数的话，使用 , 隔开，映射到sql语句中是使用 and 进行关联的
+          ex:
+            1、Author.objects.filter(id=1)
+              select * from author where id=1
+            2、Author.objects.filter(id=1,name='莫言')
+              select * from author where id=1 and name='莫言'
+        2、通过 Filed Lookups(查询谓词) 完成复杂条件
+          查询谓词：每个查询谓词都是一个独立的查询条件，可以用在所有的 有查询条件的位置处
+          1、__exact
+            作用：等值判断
+            用法：Entry.objects.filter(属性__exact=值)
+            ex:
+              Author.objects.filter(id__exact=1)
+              select * from author where id=1
+          2、__contains
+            作用：判断属性中是否包含指定关键字
+          3、__lt
+            作用：判断属性值 小于 指定值的所有数据
+          4、__lte:
+            作用：判断属性值小于等于指定值的
+          5、__gt:
+            作用：判断属性值大于指定值的
+          6、__gte:
+            作用：判断属性值大于等于指定值的
+          7、__startwith
+            作用：判断属性值是以 ** 开头的
+            用法：Entry.objects.filter(列__startwith='xx')
+            sql:select * from author where 列 like 'xx%'
+      6、查询只返回一条数据
+        语法：get(条件)
+        用法：Entry.objects.get(查询条件/谓词)
+        注意：
+          该函数只适用于 返回一条记录时使用
+    3、修改数据
+      1、修改单个数据
+        1、通过 get() 得到要修改的实体对象
+        2、通过实体对象的属性修改属性值
+        3、再通过实体对象的save()保存回数据库
+        au = Author.objects.get(id=1)
+        au.name = '王宝强'
+        au.age = 35
+        au.save()
+      2、批量修改数据
+        调用查询结果集的update()即可
+        Author.objects.all().update(属性=值,属性=值)
+        Author.objects.all().update(age=75)
+    4、删除数据
+      调用实体对象/查询结果集 的 delete() 即可
+      1、删除单个对象
+        obj = Author.objects.get(id=1)
+        obj.delete()
+      2、删除多个对象(结果集)
+        authors = Author.objects.all()
+        authors.delete()
+      练习：
+        完成删除操作
+        1、点击删除时，跳转到 delete_views 视图中
+          http://localhost:8000/delete/ID
+        2、在 delete_views中，接收一个参数，表示要删除的用户的ID
+        3、在视图中，将该ID对应的用户删除出去
+
+
+
+
+
+
+
+
+
+
+
+
+
+
