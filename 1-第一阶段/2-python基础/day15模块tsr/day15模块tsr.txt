@@ -1,0 +1,108 @@
+day15.txt 2018.4.20
+
+1.时间模块time
+  变量                    描述
+  time.altzone    夏令时时间与UTC时间差(秒为单位)
+  time.daylight   夏令时校正时间
+  time.timezone   本地区时间与UTC时间差(秒为单位)
+  time.tzname     时区名字的元组， 第一个名字为未经夏令时修正的时区名,第一个名字为经夏令时修正后的时区名
+  CST为中国标准时间(China Standard TimeUTC+8:00)
+     函数名                   描述
+  time.time()     返回从计算机元年至当前时间的秒数的浮点数(UTC时间为准)
+  time.sleep(secs)    让程序按给定秒数的浮点数睡眠一段时间
+  time.gmtime([secs])     将给秒数转换为用UTC表达的时间元组
+  time.asctime([tuple])   将时间元组转换为日期时间字符串
+  time.mktime(tuple)  将本地日期时间元组转换为新纪元秒数时间(UTC为准)
+  time.localtime([secs])  将UTC秒数时间转换为日期元组（以本地时间为准)
+2.系统模块
+  变量             描述
+  sys.path      模块搜索路径path[0]   是当前脚本程序的路径名，否则为 ''
+  sys.modules     已加载模块的字典
+  sys.version     版本信息字符串
+  sys.version_info    版本信息的命名元组
+  sys.platform    操作系统平台名称信息
+  sys.argv    命令行参数 argv[0] 代表当前脚本程序路径名
+  sys.copyright   获得Python版权相关的信息
+  sys.builtin_module_names    获得Python内建模块的名称（字符串元组）
+  标准输入输出时会用到  
+  sys.stdin   标准输入文件对象，多用于input()
+  sys.stdout  标准输出文件对象,多用于print()
+  sys.stderr  标准错误输出文件对象, 用于输出错误信息
+      函数名            描述
+  sys.exit([arg])     退出程序，正常退出时sys.exit(0)
+  sys.getrecursionlimit()     
+  sys.getrecursionlimit()     得到递归嵌套层次限制（栈的深度）
+  sys.setrecursionlimit(n)    得到和修改递归嵌套层次限制（栈的深度)
+3.模块化编程的优点:
+  1.多人合作开发
+  2.代码易于维护
+  3.提高代码复用率
+  4.解决函数名和变量名冲突
+4.模块的加载过程:
+  1.在模块导入时,模块的所有语句都会执行
+  2.一个模块已经导入,再次导入时不会重新执行
+  3.重新加载模块
+    import imp
+    imp.reload(module)#删除旧模块再加载
+5.模块导入和执行过程:
+  1.搜索路径找模块
+  2.找pyc文件,没有则生成再加载
+  3.文件已经存在,则看py和pyc文件的修改日期,在决定是否重新生成.pyc文件
+6.模块的编译compile:
+  编译            解释执行
+  *.py----->*.pyc--------->python3
+7.模块的文档字符串:
+  1.模块内第一行没有赋值给任何变量的字符串
+  2.可以用help函数查看
+  3.模块的文档字符串被绑定在模块的__doc__属性上
+8.模块的属性
+  1.__file__属性:
+    用来绑定模块对应的文件路径名
+  2.__name__属性:
+    1.用来记录自身的名字
+    2.记录模块名
+    3.判断是否为主模块
+      当此模块作为主模块运行时__name__绑定'__main__'
+      不是主模块时,模块名为文件名去掉'.py'
+9.模块的__all__列表:
+  1.模块中的__all__列表是一个用来存放可导出属性的字符串列表
+  2.from import *语句导入模块时只导入__all__列表内的属性
+10.模块的隐藏属性:
+  1.模块中以'_'开头的属性,在from import *语句导入时,
+  2.将不会导入,通常称这些属性为隐藏属性
+11.标准库模块:
+  随机模块random
+    import random as R
+     函数名                 描述
+  R.random()  返回一个[0, 1) 之间的随机实数
+  R.uniform(a,b)  返回[a,b) 区间内的随机实数
+  R.randrange([start,] stop[, step])  
+             返回range(start,stop,step)中的随机数
+  R.choice(seq)   从序列中返回随意元素
+  R.shuffle(seq[, random])  
+                    随机指定序列的顺序(乱序序列）
+  R.sample(seq,n)     从序列中选择n个随机且不重复的元素
+  R.getrandbits(nbit)       以长整型的形式返回用nbit位来表示的随机数
+  R.seed(a=None)  用给定的数a设置随机种子,不给参数a则用当前时间设置随机种
+12.包(模块包)package:
+  1.包是将模块以文件夹的组织形式进行分组管理的方法
+  3.命名包:有__init__.py
+    1.将一系列模块进行分类管理,有利于防止命名冲突
+    2.可以在需要时加载一个或部分模块而不是全部模块
+  4.import 包名.子包名.模块名 [as 模块新名]
+  5.from 包名.子包名.模块名 import 属性名[as 属性新名]
+  6.示例
+    mypack/
+        __init__.py
+        menu.py
+        games/
+           __init__.py
+           contas.py
+        office/
+           excel.py
+           word.py
+    import mypack
+    import mypack.menu
+    import mypack.games.contas
+
+

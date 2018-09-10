@@ -1,0 +1,145 @@
+day63 2018.6.26
+
+1、关系映射 - Django中的连接查询
+	1、一对一映射
+	2、一对多映射(1:M)
+		1、什么是一对多
+			A表中的一条数据可以与B表中的任意多条数据关联
+			B表中的一条数据只能与A表中的一条数据关联
+			如：
+				出版社(Publisher) 和 图书(Book)
+				商品类型(GoodsType) 和 商品(Goods)
+		2、在数据库中的体现
+			通过 外键(Foreign Key) 来体现一对多
+			在 "多" 表中增加外键(Foreign Key) 对 "一" 表的主键进行引用
+		3、语法
+			使用 外键(Foreign Key)
+			在 "多" 的实体中，增加：
+				属性 = models.ForeignKey(Entry)
+			ex:
+				Book(多) 和 Publisher(一)
+				class Book(models.Model):
+					.... ....
+					.... ....
+					publisher = models.ForeignKey(Publisher)
+    4、查询
+			Book(多) 和 Publisher(1)
+			在多的实体中增加对1的实体的引用
+			class Book(models.Model):
+				.... ....
+				publisher = models.ForeignKey(Publisher)			
+			1、正向查询 - 通过 Book 查询 Publisher
+				book = Book.objects.get(id=1)
+				publisher = book.publisher
+			2、反向查询 - 通过 Publisher 查询 Book
+				Django默认会在 1 的实体中增加 关联对象_set 属性
+				pub = Publisher.objects.get(id=1)
+				books = pub.book_set.all()
+	3、多对多映射(M:N)
+		1、什么是多对多
+			A表中的一条记录可以与B表中的任意多条记录匹配
+			B表中的一条记录可以与A表中的任意多条记录匹配
+			ex：
+				作者 与 书籍
+		2、在数据库中体现
+			必须创建第三张表，关联 涉及到的两张数据表
+      放其余2张表的ID 1主键列 2外键列
+		3、语法
+			在任何一个实体类中，增加：
+				entry = models.ManyToManyField(Entry)
+			ex:
+				class Author(models.Model):
+					... ... 
+					... ...
+					book = models.ManyToManyField(Book)
+		4、查询		
+			1、正向查询 - 通过 Author 查询所有的 Book
+				author = Author.objects.get(id=1)
+				books = author.book.all()
+				通过 关联属性.all() 查询所有的关联数据
+			2、反向查询 - 通过 Book 查询所有的 Author
+				book = Book.objects.get(id=1)
+				#Django 会在 Book 表中增加一个隐式属性 author_set
+				authors = book.author_set.all()
+			练习：
+				创建 Author 与 Publisher 多对多的关系
+				1、查询 贾乃亮 签约的所有 出版社
+				2、查询 北京大学出版社下的所有 签约作者
+2、自定义查询对象 - objects
+	在objects自身提供的查询API函数基础上，增加一部分自定义的执行函数
+	1、声明类 EntryManager ,继承自models.Manager
+		允许在 EntryManager 内部添加自定义函数
+		class EntryManager(models.Manager):
+			def 函数名(self,自定义参数列表):
+				... ...
+				return ... ...
+	2、使用 EntryManager 覆盖 Models中的objects
+		class Entry(models.Model):
+			objects = EntryManager()
+		练习：
+			1、为 Author 指定自定义 objects 对象
+				添加自定义函数：
+				1、查询年纪小于指定年纪的所有作者的信息
+			2、为 Book 指定自定义 objects 对象
+				添加自定义函数：
+				1、查询书名中包含指定关键字的书籍的数量
+3、HttpRequest 
+	1、HTTP 协议
+		1、请求(request)
+			Request Headers (View Source): 
+			第一行：请求起始行
+			请求方法  请求路径  协议版本/版本号
+		2、响应(response)
+			Response Headers (View Source):
+			第一行：响应起始行
+			协议版本/版本号  响应状态码  原因短句
+			响应状态吗：
+				1、200 ：服务器正常接收请求以及给出响应
+					原因短句：OK
+				2、304 ：从缓存中获取的数据
+					原因短句：Not Modified
+				3、403 ：未获得权限
+					原因短句：Forbbiden
+				4、404 ：请求资源未找到
+					原因短句：Not Found
+				5、500 ：服务器端程序出错
+					原因短句： ...
+	2、HttpRequest介绍
+		1、什么是HttpRequest
+			HttpRequest，在Django中是请求对象的封装体现。封装了请求过程中的所有的信息。
+			在Django中，HttpRequest 被化身成了 request 封装到了视图处理函数中作为参数，在调用视图的时候自动传入
+		2、HttpRequest中的主要内容
+			1、request.scheme : 请求协议
+			2、request.body : 请求主体
+			3、request.path : 请求路径
+			4、request.get_host() : 请求的主机地址/域名
+			5、request.method : 请求方法
+			6、request.GET : get请求方式提交的数据
+			7、request.POST : post 请求方式提交的数据
+			8、reqeust.COOKIES : cookies中的数据
+	3、获取请求提交的数据
+		1、GET请求
+			request.GET['名称']
+		2、POST请求
+			request.POST['名称']
+	4、CSRF 跨站点攻击
+		目的：为了解决跨站点发送post请求		
+		解决方案：
+			1、settings.py中
+				删除 CsrfViewMiddleWare 中间件
+			2、在视图中增加 @csrf_protect
+			3、在模板中 <form>下的第一行增加：
+				{%csrf_token%}
+
+
+
+
+
+
+
+
+
+
+
+
+

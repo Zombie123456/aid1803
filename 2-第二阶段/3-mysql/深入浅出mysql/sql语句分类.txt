@@ -1,0 +1,50 @@
+sql语句(structure query language)结构化查询语言分类:
+  1.ddl(data definition languages)数据定义语言
+    1.创建数据库:create database dbname;
+    2.选择数据库:use dbname;
+    3.删除数据库:drop database dbname;
+    4.创建表:create table tablename(
+            column_name_1 column_type_1 constraints,
+            column_name_2 column_type_2 constraints,
+                    ......
+            column_name_n column_type_n constraints);
+    5.查看表的定义:desc tablename
+                show create table tablename \G;
+    6.删除表:drop table tablename;
+    7.修改表:
+      1.修改表类型:alter table tablename modify [column]
+               column_definition [first|after col_name];
+      2.增加表字段:alter table tablename add [column]
+               column_definition [first|after col_name];
+      3.删除表字段:alter table tablename drop [column]
+                 col_name; 
+      4.字段改名:alter table tablename change [column]
+        old_col_name column_definition [first|after col_name]; 
+      5.修改字段排列顺序:可选[first|after col_name]
+      6.更改表名:alter table tablename rename[to] 
+                new_tablename;
+  2.dml(data manipulation language)数据操纵语句
+    1.插入记录:insert into tablename[(field1,field2...)]
+              values(record1_value1,record1_value2...),
+                    (record2_value1,record2_value2...),
+                                    ...
+                    (recordn_value1,recordn_value2...);
+    2.更新记录:updata tablename set 
+              field1=value1,field1=value1,...,
+              [where condition];
+              updata t1,t2... set 
+              t1.field1=expr1,t2.field1=expr2,...,
+              [where condition];
+    3.删除记录:delete from tablename [where condition];
+       delete t1,t2...from t1,t2... [where condition];
+              在不加where条件时会把所有表全删
+    4.查询记录:select * from tablename [where condition];
+        select (distinct)... 聚合函数 from 表名 where group by having order by limit 
+        聚合函数 avg sum max min count
+      5.表连接
+      6.子查询:两个select语句间用in /not in/= 等连接,第二个select语句用括号括起来
+      7.记录联合
+  3.dcl(data control language)数据控制语句:
+    DBA用来管理系统中的权限时使用
+
+可用?+xxxx来查看帮助

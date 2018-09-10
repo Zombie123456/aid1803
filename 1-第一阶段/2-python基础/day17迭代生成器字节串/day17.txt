@@ -1,0 +1,107 @@
+day17 2018.4.24
+
+迭代器(iterator)
+  访问可迭代对象的一种方式
+  指iter(可迭代对象)返回的对象
+  可以用next(it)函数获取可迭代对象的数据
+  只能向前取值
+  函数:
+    iter(iterable)从可迭代对象返回一个迭代器
+    next(iterator)从iterator获取下一个记录,无法获取时,触发StopIterator异常
+    l=[2,3,5,7];it=iter(l);next(it)#2;next(it)#3
+
+生成器generator
+  是能动态提供数据的对象,生成器对象也是可迭代对象
+  函数:
+    含有yield语句的函数,此函数被调用将返回一个生成器对象
+    yield 表达式
+    yield用于def函数中,将此函数作为生成器函数使用
+    yield用来生成数据,供next(it)使用
+  表达式:
+    (表达式 for 变量  in 可迭代对象 [if 真值表达式])
+    用推导式形式生成一个新的生成器
+
+
+迭代工具函数:
+  生成一个个性化的可迭代对象
+  zip(iter1[,iter2,....]):
+    返回一个zip对象,此对象用于生成一个元组,此元组的个数由最小的可迭代对象决定,元组内容是可迭代对象iter1和iter2中元素的组合
+    n=[1,2,3,4];a=['a','s','d'];
+    for t in zip(n,a):print(t)#(1,'a')(2,'s')(3,'d')
+    可用于生成字典dict(zip(n,b)) 
+  enumerate(iterable[,start]):
+    生成带索引的枚举对象,返回的迭代类型为(index-value)对,默认索引从0开始,也可以用start指定
+
+字节串和字节数组:
+  字节串(字节序列)bytes:
+    存储以字节为单位的数据
+    不可改变的序列
+    字节是0-255之间的整数
+    b'2'
+    构造函数:
+      bytes() 等同于b''
+      bytes(整数可迭代对象) 用可迭代对象初始化一个字节串
+      bytes(整数n) 生成n个值为0的字节串
+      bytes(字符串,encoding='utf-8')用字符串转换编码生成一个字节串
+    运算:
+      + += * *= < <= > >= == != in/not in索引 切片
+    字节串方法:
+      几乎与字符串方法一致
+    与str区别:
+      bytes 存储字节(0-255)
+      str   存储字符(Unicode值)
+    与str转换:
+      b=s.encode(encoding='utf-8')
+      s=b.decode(encoding='utf-8')
+  字节数组bytearray:
+    可变的字节序列
+    创建函数:
+      bytearray()
+      bytearray(整数可迭代对象) 用可迭代对象初始化一个字节数组
+      bytearray(整数n) 生成n个值为0的字节数组
+      bytearray(字符串,encoding='utf-8')   
+    运算:
+      + += * *= < <= > >= == != in/not in索引 切片
+      索引/切片赋值规则同列表赋值规则
+
+bytearray方法:
+  bytearray.clear()
+  bytearray.append(x)
+  bytearray.remove(x)
+  bytearray.reverse()
+  bytearray.decode
+  bytearray.find(sub[,start[,end]])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

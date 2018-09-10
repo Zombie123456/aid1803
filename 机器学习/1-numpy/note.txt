@@ -1,0 +1,49 @@
+numpy.genfromtxt("文件路径",delimiter='分隔符',dtype=str)
+numpy.ndarray数据类型
+vector = numpy.array([5,10,15,20])
+matrix = numpy.array([[1,2,3],[1,2,5]])
+vector.shape 返回(行数,列数)
+numpy.array内的数据必须全为同一数据类型 会自动进行类型转化
+vector[行数,列数]
+vector[:,:]行切片 列切片
+vector == 10 会逐个比较
+vector[False True False False] #[10]
+&与 |或 
+vector.dtype
+vector.astype(float)逐个转化类型
+vector.min()
+vector.max()
+matrix.sum(axis=1)求行和
+matrix.sum(axis=0)求列和
+a=numpy.arange(15).reshape(3,5)3行5列
+a.ndim 维度
+a.dtype.name
+a.size
+numpy.zeros((3,4))初始化一个3行4列的矩阵,数值全为0
+numpy.ones((2,3,4),dtype=numpy.int32)数值全为1
+numpy.arange(10,30,5) #[10,15,20,25]
+numpy.random.random((2,3))2行3列
+numpy.linspace(0,5,100)平均取0到5 100个值
+2个数组可以对应相减
+A*B 对应位置相乘
+A.dot(B) numpy.dot(A,B) 矩阵的乘法
+numpy.exp(A)求e的多少次幂
+numpy.sqrt(A)开方
+numpy.floor(A)向下取整
+A.ravel() 拉平一个矩阵
+A.T 转置矩阵
+A.reshape(3,-1)
+numpy.hstack((a,b))对矩阵进行拼接 横着 不改变行数
+numpy.vstack((a,b))对矩阵进行拼接 纵着
+numpy.hsplit((a,3)) 切成3个数组
+numpy.vsplit((a,3))
+numpy.hsplit((a,(3,4)))
+c= a.view() 浅复制 id不同 值相同
+c=a id和值都相同
+c = a.copy() 深复制
+data_max=data.argmax(axis=0) 按列查看索引最大的值
+data[data_max,range(data.shape[1])]拿出最大的值
+numpy.tile(a,(3,5))扩展 不改变行列数 只多出数据
+numpy.sort(a,axis=1)
+numpy.argsort(a)索引
+

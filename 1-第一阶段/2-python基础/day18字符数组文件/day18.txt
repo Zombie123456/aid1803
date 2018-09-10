@@ -1,0 +1,95 @@
+day18 2018.4.25
+
+文件:
+  用于数据存储的单位
+  通常用来长期存储的设置
+  中的数据是以字节为单位进行顺序存储的
+
+文件的函数.方法:
+  open(file,mode='rt')打开失败触发IOError
+  mode模式字符     含义
+  'r'     以只读方式打开(默认)
+  'w'     以只写方 式打开，删除原有文件内容(如果文件不存在，
+  则创建该文件并以只写方式打开)
+  'x'     创建一个新文件, 并以写模式打开这个文件,如果文件存在则会产生"FileExistsError"错误
+  'a'     以只写文件打开一个文件，如果有原文件则追加到文件末尾
+  'b'     用二进制模式打开
+  't'     文本文件模式打开 (默认)
+  '+'     为更新内容打开一个磁盘文件 (可读可写)
+  缺省模式是 'rt'
+  'w+b' 可以实现二进制随机读写，当打开文件时，文件内容将被清零
+  'r+b' 以二进制读和更新模式打开文件,打开文件时不会清空文件内容
+  'r+' 以文本模式读和更新模式打开文件,打开文件时不会清空文件内容
+  方法 	          说明
+	F.close() 关闭文件(关闭后文件不能再读写会发生ValueError错误)
+	F.readline() 	读取一行数据, 如果到达文件尾则返回空行
+	F.readlines(max_chars=-1)返回每行字符串的列表,max_chars为最大字符(或字节)数
+	F.writelines(lines) 	每行字符串的列表
+	F.flush() 	把写入文件对象的缓存内容写入到磁盘
+	F.read(size = -1) 	从一个文件流中最多读取size个字符
+	F.write(text) 	写一个字符串到文件流中，返回写入的字符数
+	二进制文件操作方法 	
+	F.tell() 	返回当前文件流的绝对位置
+	F.seek(offset, whence=0) 	改变数据流的位置，返回新的绝对位置
+	F.readable() 	判断这个文件是否可读,可读返回True,否则返回False
+	F.writable() 	判断这个文件是否可写,可写返回True,否则返回False
+	F.seekable() 	返回这个文件对象是否支持随机定位
+	F.truncate(pos = None) 	剪掉 自pos位置之后的数据，返回新的文件长度(字节为单位)
+
+各操作系统默认换行符:
+  WINDOWS:   \r\n
+  linux:     \n
+  macintosh: \r
+  mac osx:   \n
+
+ 二进制文件操作:
+   打开模式'b'
+   以字节为单位读写
+   对二进制文件的读写,需用字节串(bytes)进行操作
+
+ f.seek(offset,whence=0):
+   offset偏移量
+   whence相对位置:
+     0 代表从文件头开始偏移
+     1 代表从文件当前位置开始偏移
+     2 代表从文件尾开始偏移
+
+ 源文件第一行写
+  -*- coding:utf-8 -*-
+  或
+  -*- coding:gbk -*-
+  
+ 标准输入输出文件:
+  sys.stdin   标准输入文件对象，多用于input()
+    sys.stdin.read(n)从键盘上读取n个数据,
+    当不输入n或n为负数时会无限读取键盘上输入的数据,输入ctrl+d结束
+  sys.stdout  标准输出文件对象,多用于print()
+    sys.stdout.write('fsdfgsg\n')
+    等同于print('fsdfgsg',end='\n')
+    print(value, sep=' ', end='\n',file=sys.stdout, flush=False))
+    file参数可指定到其他文件
+  sys.stderr  标准错误输出文件对象, 用于输出错误信息
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

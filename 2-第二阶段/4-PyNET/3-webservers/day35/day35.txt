@@ -1,0 +1,69 @@
+day35 2018.5.21
+
+1.多线程并发
+  1.相对于多进程并发特点
+    1.劣势
+      1.可能需要同步和互斥机制
+      2.受到GIL影响
+    2.优势
+      只需要较少的系统资源
+  2.实现
+    1.threading模块
+    2.步骤
+      1.创建套接字
+      2.准备接受客户端连接
+      3.每当有一个客户端连接进来就创建一个新线程
+      4.客户端退出后结束相应线程,关闭客户端套接字
+2.基于多线程的httpserver
+  1.思路
+    1.每有一个客户端就有一个线程为其服务
+    2.httpserver的功能(解析请求和处理响应)封装成类
+    3.所有的静态页面收集到一个文件夹
+    4.处理方法放在一个文件夹
+  2.技术实现
+    1.并发
+      多线程
+    2.类
+      1.初始化
+        将socket变为属性,并且增加一系列其他属性
+      2.服务器启动方法
+        接受客户端请求,创建新的线程
+      3.客户端处理函数       
+3.cookie
+  1.sys.path
+  2.__import__()
+    参数为一个目录,等同于import导入
+4.使用集成模块完成网络并发
+  1.socketserver模块
+  2.进程tcp并发
+  3.进程udp并发
+  4.线程tcp并发
+  5.线程udp并发
+  6.'DatagramRequestHandler',
+    'ForkingMixIn',
+    'ForkingTCPServer',
+    'ForkingUDPServer',
+    'StreamRequestHandler',
+    'TCPServer',
+    'ThreadingMixIn',
+    'ThreadingTCPServer',
+    'ThreadingUDPServer',
+    'UDPServer',
+    三部分 
+     多进程/多线程       TCP/UDP      streamhandler/datagramhandler
+     ForkingMixIn      TCPServer     StreamRequestHandler
+     ThreadingMixIn    UDPServer     DatagramRequestHandler
+
+    'ThreadingTCPServer' = ThreadingMixIn  +  TCPServer
+    'ThreadingUDPServer' = ThreadingMixIn  +  UDPServer
+    'ForkingTCPServer',  = ForkingMixIn    +  TCPServer
+    'ForkingUDPServer',  = ForkingMixIn    +  UDPServer 
+
+
+
+
+
+
+
+
+

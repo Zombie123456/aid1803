@@ -1,0 +1,102 @@
+day29 2018.5.11
+1.tcp应用之http服务器
+  1.接受http请求
+  2.给出响应
+2.IO 
+  1.在内存中存在数据交换的操作
+    1.内存和磁盘交换
+    2.内存和网络交换
+  2.IO密集型程序
+  3.CPU密集型程序
+  4.分类:
+    1.阻塞IO:
+      1.所有IO操作默认就是阻塞的
+      2.阻塞:等待某种条件达成再继续运行
+            处理IO事件时耗时较长
+      3.效率最低
+    2.非阻塞IO:
+      1.通过修改IO对象让他变为非阻塞状态
+      2.用循环不断判断阻塞条件,需要消耗更多CPU但是一定程度上提高了IO效率
+      3.s.setblocking(False)
+      4.超时等待(检测)
+          s.settimeout(sec)
+          对原本阻塞的函数进行设置,使其不再始终阻塞,而是阻塞等待一定时间后自动返回.在规定时间中如果正常结束阻塞则继续执行,否则产生timeout异常
+    3.IO多路复用
+      1.同时监控多个IO事件,当哪个IO事件准备就绪就执行哪个IO事件,形成并发效果
+      2.import select
+        1.select
+          r,w,x = select(rlist,wlist,xlist[,timeout])
+            功能:监控IO事件,阻塞等待IO事件发生
+            参数:list列表,存放要监控等待处理的IO
+                wlist列表:存放我们希望处理的IO
+                xlist列表:存放如果发生异常需要处理的
+                timeout数字:超时检测
+            返回值:r列表:rlist中准备就绪的IO
+                  w列表:wlist中准备就绪的IO
+                  x列表:xlist中准备就绪的IO
+        2.poll
+          1.创建poll对象
+            p = select.poll()
+          2.加入关注的IO
+            p.register(s)
+            p.unregister(s)
+          3.使用poll函数进行监控
+            events = p.poll()
+            阻塞等待register的事件,只要有任意一个准备就绪就返回
+            events是个列表[(fileno,event),(),()]
+          4.处理发生的IO事件
+          5.poll IO 事件
+            1.POLLIN
+              rlist
+            2.POLLOUT
+              wlist
+            3.POLLUP
+              断开连接
+            4.POLLERR
+              xlist
+            5.POLLPRI
+              紧急处理
+            6.POLLVAL
+              无效的数据 
+        3.epoll
+          1.几乎与poll一致
+          2.效率比select和poll高,不支持WINDOWS,支持水平和边缘(EPOLLET)触发,
+          select和poll只支持水平触发
+      3.注意:
+        1.处理IO过程中不能出现死循环
+        2.是单进程程序,是一个并发程序
+        3.有较高的IO执行效率
+    4.事件驱动IO
+    5.异步IO 
+3.traceback模块
+  traceback.print_xec()
+    打印异常信息
+4.本地套接字
+  1.linux文件类型
+    b(块设备文件)c(字符设备文件)d(文件夹)-(普通文件)
+    l(链接文件)s(套接字文件)p(管道文件)
+  2.意义:
+    linux或Unix操作系统下提供本地进程间通信的一种方式
+  3.本地套接字创建流程
+    1.创建套接字文件
+    2.绑定套接字文件
+    3.监听
+    4.接受连接
+    5.消息收发
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

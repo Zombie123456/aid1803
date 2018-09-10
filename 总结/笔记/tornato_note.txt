@@ -1,0 +1,361 @@
+孙伟
+bjsunwei@tedu.cn
+
+day66  2018.6.29
+初识Tornado
+web框架
+Django,Tornado,Flask
+1. 基本九行代码实现Tornado服务器程序：
+  class IndexHandler(RequestHandler):
+      def get(self, *args, **kwargs):
+          self.write('Hello Tornado')
+      def post(self, *args, **kwargs):
+          pass
+  app = Application(handlers=[('/',IndexHandler)])
+  server = HTTPServer(app)
+  server.listen(8888)
+  IOLoop.current().start()
+２．将端口号写到配置文件中
+  １．定义端口号在配置文件中的名称，类型，默认值
+    define('名称',type=int,default=8888)
+  ２．解析配置文件
+    parse_config_file('配置文件路径')
+  ３．读取配置文件中的内容
+    options.名称
+3.利用路径的变化请求不同的资源．
+  /java/day3/css
+  /java/day4
+  服务器利用正则表达式获取不同路径的内容
+  生成不同的响应内容
+  /java/(day[0-9]+)
+  /java/(day[0-9]+)/([a-z0-9]+)
+４．利用参数的变化请求不同的资源．
+  以GET方式提交参数
+  /python?day=day3&subject=css
+  /python?day=day4
+  服务器会调用RequestHandler中的相关方法获取请求参数，再根据不同的请求参数进行不同的响应．
+  self.get_query_argument('参数名称',默认值)
+  提供默认值防止用户没有提供该参数时，产生４００错误．
+  self.get_query_arguments('参数名称')
+  以列表的形式返回参数值（们），即使用户没有提供该参数，
+  也不会产生４００错误，只会得到一个空列表．
+
+  以POST方式提交参数
+  用表单进行提交．
+  服务器会调用RequestHandler中的相关方法获取请求参数，再根据不同的请求参数进行不同的响应．
+  self.get_body_argument('参数名称',默认值)
+  提供默认值防止用户没有提供该参数时，产生４００错误．
+  self.get_body_arguments('参数名称')
+  以列表的形式返回参数值（们），即使用户没有提供该参数，
+  也不会产生４００错误，只会得到一个空列表．
+
+  RequestHandler中还有一个
+  get_argument()
+  get_arguments()
+  函数使用效果就是
+  get_query_argument()+get_body_argument()
+  get_query_arguments()+get_body_arguments()
+5. 课堂练习题：
+  利用目前所学的知识，在首页面呈现一个登录表单收集用户名和密码．如果用户输入的用户名为＂abc＂，密码为"123"，在控制台上打印"用户信息正确"，否则打印"用户名或密码错误"
+６．从一个页面跳转到另一个页面：
+  self.redirect('/路径')
+  redirect跳转时采用的是get方式发起访问
+7.处理上传文件
+  HTTPServerRequest,它封装了与请求相关的所有内容
+  利用HTTPServerRequest对象的files属性处理上传的文件
+  {
+    'avatar':[{'content_type':'image/jpeg',
+    'body':文件的二进制格式,
+    'filename':上传者本地图像名称},
+    {},{}]}
+    
+day67 2018.7.2
+1.钩子方法
+  框架作者通过"钩子方法"将框架中的代码和使用者的代码结合起来,完成一个复杂的业务
+  在Tornado框架中,从截获请求到生成响应中间有很多步骤,Tornado作者设置了若干个钩子方法供使用根据具体业务需要重写:
+  钩子方法包括:
+    set_default_headers:设置默认头部
+    initialize:接受路由列表初始化参数
+    get / post:生成响应内容
+    on_finish:释放或关闭资源
+  钩子方法没有必要非得重写.
+2.调用set_header(头名,值)设置响应头
+  调用set_status(状态码,'状态码描述')设置响应行(状态码)
+  HTTP协议中不存在的状态码,要手动给出状态码描述,否则会产生500错误.在实际开发请慎用HTTP协议中不存在的状态码.
+  调用send_error(状态码)方法触发write_error方法产生错误信息.
+  write_error方法是父类方法,如果要改写,注意要调用父类方法的原有逻辑.
+3.服务器两种常见的响应格式
+  1:JSON字符串
+  2:HTML页面(模板)
+4.tornado如何以json字符串作为响应内容
+  1.构建一个Python的字典,然后利用json.dunmps(dic)将字典转为JSON字符串,设置响应头self.set_header('Content-Type','application/json;charset=UTF-8'),将JSON字符串做为服务器的响应交给客户端.
+  2.构建一个Python字典,然后直接将字典做为服务器的响应交给客户端.(Tornado中的finish方法会帮助我们完成从Python字典到JSON字符串的转换工作)
+5.模板的使用
+  1.创建一个存放模板文件的文件夹.(例如:mytemplate)
+  2.在模板文件夹下创建HTML文件充当模板
+  3.在Tornado中配置模板路径.
+    在Application构造器中以关键字template_path传入路径(例如:template_path='mytemplate')
+  4.使用模板
+    self.render('模板文件的名字')
+    render是将做为模板的HTML文件转为字符串,写入缓冲区!
+    等待finish将缓冲区中的字符串推回客户端/浏览器
+6.变量 算术表达式 函数表达式
+  在模板中,可以使用{{}}插入变量,算术表达式或函数表达式(内置的函数表达式,或者自定义的函数表达式).但是,必须在render方法中,对模板中使用的变量,算术表达式的变量以及函数表达式中的自定义函数进行赋值!不然就会产生500错误.
+  具体的应用示例:计算评论数量,登录错误时的提示信息
+7.在模板中,可以使用{%%}插入语句.
+  循环语句{%for xxx in xxxs%}...{%end%}
+    1.xxxs也是一个变量,谁负责render,谁就要给xxxs赋值.
+    2.语句结束时,只需要写{%end%},Tornado会进行就近匹配原则进行匹配.
+  分支语句{%if 条件%}...{%else%}...{%end%}
+    语句结束时,只需要写{%end%},Tornado会进行就近匹配原则进行匹配.
+8.在模板中,使用静态资源
+  1.创建存放静态资源的文件夹,比如mystatics.将各种静态资源(图片,CSS,JS)分子文件夹存入mystatics.
+  2.配置静态资源路径.配置的方式就是在Application的构造器中添加参数static_path='mystatics'
+  3.使用静态资源:
+    1.需要静态资源的地方写static/子文件夹/静态资源文件名称
+      例如,我要使用一张图片,static/images/xxx.jpg
+      我要使用JS库,static/js/jquery-3.2.1.js
+      我要使用CSS库,static/css/bootstrap.css
+      static是Tornado的关键字,Tornado会根据static_path来解析static.
+    2.使用Tornado的内置函数,构建静态资源的路径:
+      {{static_url('静态资源的路径')}}
+      例如:
+      我要使用一张图片,{{static_url('images/xxx.jpg')}}
+      我要是用JS库,{{static_url('js/jquery-3.2.1.js')}}
+      我要是用CSS库,{{static_url('css/bootstrap.css')}}
+9.学习网络框架
+  1.路由的配置
+  2.模板的使用
+  3.静态资源的使用
+day68 2018.7.3
+1.块的使用
+  为了减少写各个子模板时重复代码的书写,就把各个子模板中相同的内容提取到一个公共模板中(一般公共模板的名字都叫做base.html).各个子模板通过继承公共模板({%extends base.html%})就可以获得这些相同的内容.
+  在写公共模板时,要使用块语句({%block 块名称%}{%end%})标示出各个子模板可能不同的地方.这样以后再写子模板时,只要关注各个子模板不同的地方即可.
+2.模块的使用
+  1.在模板文件夹下(mytemplate)创建模块文件夹,用来存放模块文件.
+  2.在模块文件夹下,创建模块文件.
+  3.在模板文件中需要使用模块文件的位置,插入语句:
+  {%module xxxxx()%} xxxxx()是用来将模块文件转为(render)一个字符串,插入到模板文件中.
+  4.配置Application,利用关键字ui_modules进行传参,参数值字典{'xxxxx':自定义module类}.
+  5.创建自定义module类,继承自UIModule类,重写父类中的钩子方法render.
+  render方法一定要返回一个字符串,该字符串就是插入模板中的内容.
+  一般该字符串,是根据要使用的模块文件生成的,从模块文件到字符串只需要调用父类的render_string方法就可以完成.
+  注意:如果模块文件中包含变量,变量表达式,自定义函数表达式,一定在调用render_string方法时,对变量或自定义函数赋值.否则就会导致500错误.
+  用self.request.query获取参数 
+  意义
+    1.让模板变的简洁
+    2.模块是可以复用的.构建新的页面时,是可以使用已有模块进行拼接组成
+    3.协同开发
+3.Tornado的自动转义(auto-escaping)
+  1.Tornado针对<script></scripte>会默认开启自动转义功能,防止恶意代码执行.
+  2.转义就是把<script>标签变为&lt;scripte&gt;
+  3.如果想关闭该功能,有两种方式:
+    1.在Application的构造器中,以关键字参数autoescape传入,值为None.
+      会影响到所有模板中的HTML文件都关闭转义.
+      如果只想让某一个页面关闭转义,使用第二种方式
+    2.在需要关闭自动转义的页面中,加入语句:
+      {%autoescape None%}
+  4.需要注意的是,Google Chrome浏览器安全级别比较高
+    即使Tornado关闭了转义,Chrome浏览器依然会拦截带<script>标签的文本的执行.
+    可以通过设置响应头来压制Chrome的安全机制:
+    set_header('X-XSS-Protection',0)
+4.根据博客网站的要求,设计数据表
+  建库
+    create database if not exists db_blog default charset=utf8;
+  用户表tb_user
+    create table if not exists tb_user(
+    user_id int auto_increment,
+    user_name varchar(32) not null,
+    user_password varchar(64) not null,
+    user_avatar varchar(128) default null,
+    user_city varchar(32) not null,
+    user_createdat datetime default current_timestamp,
+    user_updatedat datetime default current_timestamp on update current_timestamp,
+    primary key(user_id),
+    unique(user_name))default charset = utf8;
+  博客表tb_blog
+    create table if not exists tb_blog(
+    blog_id int auto_increment,
+    blog_user_id int not null,
+    blog_title varchar(100) not null,
+    blog_content varchar(1024) not null,
+    blog_createdat datetime default current_timestamp,
+    blog_updatedat datetime default current_timestamp on update current_timestamp,
+    primary key(blog_id),
+    foreign key(blog_user_id) references tb_user(user_id) on update cascade on delete cascade)default charset = utf8;
+  标签表tb_tag
+    create table if not exists tb_tag(
+    tag_id int auto_increment,
+    tag_content varchar(16) not null,
+    primary key(tag_id)
+    )default charset = utf8;
+  博客标签表tb_blog_tag
+    create table if not exists tb_blog_tag(
+    blog_tag_id int auto_increment,
+    rel_blog_id int not null,
+    rel_tag_id int not null,
+    primary key(blog_tag_id),
+    foreign key(rel_blog_id) references tb_blog(blog_id) on update cascade on delete cascade,
+    foreign key(rel_tag_id) references tb_tag(tag_id) on update cascade on delete cascade)default charset = utf8;
+  评论表tb_comment
+    create table if not exists tb_comment(
+    comment_id int auto_increment,
+    comment_blog_id int not null,
+    comment_user_id int not null,
+    comment_content varchar(256) not null,
+    comment_createdat datetime default current_timestamp,
+    comment_updatedat datetime default current_timestamp on update current_timestamp,
+    primary key(comment_id),
+    foreign key(comment_blog_id) references tb_blog(blog_id) on update cascade on delete cascade,
+    foreign key(comment_user_id) references tb_user(user_id) on update cascade on delete cascade)default charset = utf8;
+5.查询每个城市的最晚注册用户(user_name,user_city,user_createdat)
+  select user_name,tb_user.user_city,user_createdat
+  from tb_user join 
+  (select max(usesockfd.close()r_createdat) late,user_city
+  from tb_user
+  group by user_city) t
+  on tb_user.user_createdat = t.late and 
+    tb_user.user_city = t.user_city
+day69 2018.7.4
+1.其余数据表的插入规则:
+  1.不是每个用户都写博客
+  2.一个用户可以写多篇博客
+  3.不是每个博客都有标签
+  4.一个博客可以有多个标签
+  5.不是每个博客都有评论
+  6.一个博客可以有多条评论
+2.查询所有blog及其作者信息(user_name,blog_title)
+  select user_name,blog_title
+  from tb_user join tb_blog  
+  on user_id = blog_user_id
+3.改变一下第2题数据呈现方式.
+  select user_name,group_concat(blog_title)
+  from tb_user join tb_blog  
+  on user_id = blog_user_id
+  group by user_name
+4.查询所有用户及其所写的blog(user_name,blog_title)
+  select user_name,blog_title
+  from tb_user left join tb_blog  
+  on user_id = blog_user_id
+5.改变一下第4题数据呈现方式
+  select user_name,group_concat(blog_title)
+  from tb_user left join tb_blog  
+  on user_id = blog_user_id
+  group by user_name
+6.查询所有blog及其标签信息(blog_title,tag_content)
+  1.先从tb_blog_tag表中查出博客id和标签id
+    select rel_blog_id,rel_tag_id from tb_blog_tag
+  2.根据1得到的派生表与tb_tag表联合查询,找到rel_tag_id所对应的具体的标签内容.
+    select rel_blog_id,tag_content
+    from tb_tag join (select rel_blog_id,rel_tag_id from tb_blog_tag)t
+    on  tag_id = rel_tag_id
+  3.根据2得到的派生表与tb_blog表联合查询,找到rel_blog_id所对应的博客的标题
+    select blog_title, group_concat(tag_content)
+    from tb_blog left join (select rel_blog_id,tag_content
+    from tb_tag join (select rel_blog_id,rel_tag_id from tb_blog_tag)t
+    on  tag_id = rel_tag_id)t1
+    on blog_id = rel_blog_id
+    group by blog_title
+7.查询所有blog及其标签信息及作者信息(blog_title,tag_content,user_name)
+  select user_name,blog_title,tc
+  from tb_user join (select blog_title, tag_content tc,blog_user_id
+  from tb_blog left join (select rel_blog_id,tag_content
+  from tb_tag join (select rel_blog_id,rel_tag_id from tb_blog_tag)t
+  on  tag_id = rel_tag_id)t1
+  on blog_id = rel_blog_id
+  )t2
+  on user_id = blog_user_id
+
+  select user_name,blog_title,group_concat(tc)
+  from tb_user join (select blog_title, tag_content tc,blog_user_id
+  from tb_blog left join (select rel_blog_id,tag_content
+  from tb_tag join (select rel_blog_id,rel_tag_id from tb_blog_tag)t
+  on  tag_id = rel_tag_id)t1
+  on blog_id = rel_blog_id
+  )t2
+  on user_id = blog_user_id
+  group by user_name,blog_title
+8.查询所有blog及其标签信息及作者信息和评论条数及博客正文
+  select user_name,user_avatar,blog_title,tc,c,blog_content
+  from (select comment_blog_id,count(*)c from tb_comment
+  group by comment_blog_id)t3
+  right join (select user_name,user_avatar,blog_id,blog_title,tc,blog_content
+  from tb_user
+  join (select blog_id,blog_title,tc,blog_user_id,blog_content
+      from tb_blog
+      left join (
+        select rel_blog_id, group_concat(tag_content)tc
+        from tb_tag
+        join (select rel_blog_id,rel_tag_id from tb_blog_tag)t
+        on tag_id = rel_tag_id
+        group by rel_blog_id)t1
+      on blog_id = rel_blog_id)t2
+  on user_id = blog_user_id)t4
+  on comment_blog_id = blog_id
+9. 在python中使用pymysql操作数据库
+  1.获得数据库联接.
+    获取联接时,connect方法需要传递很多参数.一般会将这些参数组织成字典,
+    然后以**字典的方式传入connect方法.
+    settings={
+        'host':'127.0.0.1',
+        'port':3306,
+        'user':'root',
+        'password':'123456',
+        'database':'blogdb',
+        'charset':'utf8'
+    }
+    connection = pymysql.connect(**settings)
+  2.通过联接获取游标
+    cursor = connection.cursor()
+  3.利用游标发送SQL语句.
+    构建SQL语句时,如果需要传入参数,请尽量在SQL语句中使用占位符,
+    然后将参数按顺序构建成元组,以防止SQL注入攻击.
+    例如:sql = 'select count(*) from tb_user 
+        where user_name = %s and user_password=%s'
+    params=('abc','123')
+    cursor.execute(sql,params)
+  4.利用游标获取数据库返回的结果
+    cursor.fetchall()返回的形式((1,xx,xx),(2,xx,xx),(4,xx,xx))
+    cursor.fetchone()返回的形式是单独的元组(1,xx,xx)
+10.利用pymysql对数据表进行了增,删,改的操作后,
+  都必须进行提交,才能将改变真正的写入到数据库中!如何进行提交?
+  调用数据库联接的commit()方法
+  connection.commit()
+  或者,调用游标的connection属性,该属性实际指向的是数据库联接对象,
+  然后再调用commit方法
+  cursor.connection.commit()
+day70 2018.7.5
+1.代码的封装
+  把处理一类事情的代码都封装在一个类中
+2.尽量避免创建过多的对象
+3.AJAX纯粹的前端用来访问服务器的技术
+  A:Asynchronous 异步 J:JavaScript 
+  A:and X:XML Extensible Markup Language 可扩展标记语言
+  浏览器内嵌了一个对象:XMLHTTPRequest,通过该对象发起一个请求,等待服务器的响应
+  可以单独发请求,单独等待响应,单独刷新局部的页面
+  1.标准js
+    1.获得XMLHTTPRequest对象
+    2.进行配置:请求路径,发送的数据,
+    3.
+  2.JQuery
+    $.ajax({
+        url:"/请求地址",
+        data:{"用户名":"张三"},
+        type:"post / get",
+        datatype:"json / html / xml",
+        async:true/false,
+        success:function(data){
+            #如何使用服务器给的响应
+        },
+        error:function(err){
+            #当请求发生错误时如何处理
+        }
+    });
+4.cookies
+  1.设置
+    self.set_cookie{'键','值',expires_days=}
+  2.读取
+    self.get_cookie('键')
+5.session
+  1.
+end

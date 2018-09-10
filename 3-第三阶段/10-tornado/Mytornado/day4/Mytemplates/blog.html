@@ -1,0 +1,24 @@
+{% extends base.html %}
+
+{% block title %}
+  博客
+{%end%}
+  
+{% block css %}
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .text{
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
+{%end%}
+
+{% block body %} 
+  {% module blogmodule() %}
+{%end%}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码</title>
+
+</head>
+<body>
+<form action="yz_home.html" method="POST">
+<div> 用户名：<input type="text" placeholder="用户名" name="username"></div>
+<div>密码：<input type="password" placeholder="密码" name="pwa"></div>
+<div>验证码：<input type="text" name="yzm"></div>
+<img src="/yanzheng.html" onclick="shuaxin(this);">
+<div><input type="submit" value="确认"></div>
+    <script src="/static/js/jquery-1.11.3.js">
+    </script>
+    <script>
+        function shuaxin(ths){
+            var i =$(ths).prop("src");
+            $(ths).prop("src",i+"?");
+        }
+    </script>
+</form>
+</body>
+</html>

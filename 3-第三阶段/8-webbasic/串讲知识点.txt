@@ -1,0 +1,18 @@
+1.css
+  1.通配选择器
+    *{}
+  2.:after
+  3.万能清理浮动
+    .clear{
+    clear:both;
+    zoom:1;注:解决ie兼容性问题
+    }
+    .clear:after{
+    clear:both;
+    height:0;
+    content:'';内容
+    visibility:hidden;
+    display:block;
+    }
+  4.p里面不能嵌套块元素
+  5.:first-child{}

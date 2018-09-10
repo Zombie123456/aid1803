@@ -1,0 +1,113 @@
+day03笔记:
+
+1.LabelFrame 控件
+  1.和Frame一样,只多了一个text属性
+  2.示例:
+    01_labelframe.py
+2.RadioButton 控件
+  1.作用：
+  　　从多个选项中选择其中的一个
+  2.属性:
+    text      显示文字信息
+    value     此控件代表的值
+    variable  此控件绑定的 IntVar对象
+    command   回调函数
+  3.示例:
+    见：02_radiobutton.py
+3.tkinter的变量类型：
+  1.IntVar      整数变量
+  2.StringVar   字符串变量
+  3.DoubleVar   浮点变量
+  4.BooleanVar  布尔变量
+  5.方法:
+    get()       获取相应的值
+    set(value)  设置相应的值
+  6.属性:
+    value  设置初始值
+4.Scale控件:
+  1.属性:
+    from_ 起始整数值
+    to    终止值(包含)
+    orient  方向 HORIZONTAL(水平) , VERTICAL(竖直)
+    command 值变化过程回调函数
+    variable 绑定变量 IntVar
+  2.方法:
+    get()　      获取值
+    set(value)  设置值
+  3.command 回调(callback)函数:
+    def xxxx(v):  # v代表当前的值
+        ....
+  4.示例:
+    04_scale.py
+5.Spinbox 控件
+  1.属性:
+    from_   整数起始值
+    to      整数终止值(包含)
+    increment  增加／减少的值
+  2.方法:
+    get()        ...略
+  3.示例见:
+    05_spinbox.py
+6.text 控件:
+  1.作用：
+    用于显示和书写多行文本
+  2.方法：
+    insert(index, 文字内容的字符串)
+  3.属性:
+    width  宽(以字符宽度为单位)
+    height 高(以文字的行为单位)
+  4.示例见:
+    06_text.py
+7.事件 event
+  1.事件是鼠标，键盘等对窗口发出的指令
+  2.事件的来源：
+    鼠标，键盘，定时器和其它系统事件
+  3.事件的绑定方法:
+    bind(事件类型，事件处理函数)
+  4.事件处理函数的定义方法:
+    def xxxx(event):
+        pass
+    注： event为事件
+  5.常用事件字符串:
+    '<Button>'    鼠标的全部按键按下
+    '<Button-1>' 鼠标的左键按下,2,3为中间键和右键
+    '<ButtonRelease>' 鼠标的全部按键抬起
+    '<ButtonRelease-1>' 右键抬起
+    '<Key>' 或 '<KeyPress>' 全部的键盘按键按下
+    '<Key-a>'    'a'键按下
+    '<KeyRelease>'  全部按键抬起
+    '<KeyRelease-a>' 'a'键抬起
+    '<Key-Left>'     左方向键按下
+    '<F1>'           F1键按下
+    '<Control-v>'    Ctrl+v
+    ....
+  6.事件 event 的属性
+    type    事件类型
+    ---------以下为键盘事件的属性-------
+    keycode  键盘的代码（操作系统级别的编码)
+    keysym   按键的符号名称(字符串)
+    keysym_num 按键对应的ASCII值
+    char       按键对应的字符(字符串)
+    ---------以下为鼠标事件的属性
+    x,y    鼠标相对于窗口控件的位置（像素)
+    x_root, y_root, 鼠标相对于屏幕左上解的绝对位置（像素)
+    num,    按扭的编号
+8.定时器
+  1.每一个窗口控件都可以设置一个或多定时器
+  2.方法:
+    after(延时毫秒数, 定时器回调函数)
+      作用：
+        启动一个定时器,返回一个代表此定时器的整数
+    after_cancel(定时器id)
+      作用：
+        取消一个已经启动的定时器
+      注: 定时器id为after返回的值
+  3.示例见:
+    09_timer.py
+9.下拉框
+  1.from tkinter import ttk
+  2.xl = tkinter.StringVar()
+  3.xls = ttk.Combobox(root, textvariable=xl)
+  4.xls['values'] = ('老师', '学生')
+  5.设置初始值
+    xls.current(0)

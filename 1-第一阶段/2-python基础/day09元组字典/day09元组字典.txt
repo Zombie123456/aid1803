@@ -1,0 +1,58 @@
+day09.txt 2018.4.12
+
+1.元组tuple:
+  元组是不可改变的序列,可以存放任意类型的元素
+  t=() t=200, t=(20,) t=(1,2,3) t=100,200,300
+2.type(x):用来返回x的类型
+3.元组的构造(创建)函数:
+  tuple() 生成一个空元组
+  tuple(iterable) 用可迭代对象生成一个元组
+4.元组的运算:同列表运算方式一致
+  算术运算:+ += * *=
+  比较运算:< <= > >= == !=
+  in /not in
+  is
+5.元组的索引和切片等同于列表的索引和切片
+6.元组的方法:
+  T.count(value) return number of occurrences of value
+  T.index(value, [start, [stop]]) return first index of value.
+7.用于序列的函数:
+  any(x)容器中有一个值为True返回True,否则返回False
+  all(x)容器中全为为True返回True,否则返回False
+  sum() 累加,元素必须全为数据类型
+  len()
+  max()
+  min()
+  str(obj) 
+  list(iterable)
+  tuple(iterable)
+  reversed(seq) 返回反向顺序的迭代器对象
+  sorted(iterable,reverse=False) 返回已排序列表
+8.字典dict:
+  是一种可变的容器,可以存储任意类型的数据
+  数据用'键'来索引,数据元素无先后关系
+  数据以键(key)-值(value)对的形式进行映射存储,
+  键不能重复,只能用'不可变类型'作为字典的键
+9.字典的字面值的表示方式:
+  {}括起来 以冒号分隔键-值对,键-值对间用逗号隔开
+  d={} d={'name':'tarena','age':16}
+10.字典的构造函数: 
+  dict()
+  dict(iterable) 用可迭代对象初始化一个字典
+  dict(**kwargs) 用命名关键字传参形式生成一个字典
+  dict(name=tarena,age=16)
+  dict([('name','tarena'),('age',15)])
+11.字典的键只能为不可变类型
+  不可变类型:
+    bool,int,float,complex,str,tuple,bytes(字符串)
+  frozenset(固定集合),以及None
+  可变类型:
+    list,dict,set(集合),bytearray(字节数组)
+12.字典的基本操作:
+  键索引:
+    字典[键] d['name']#tarena
+  添加/修改字典元素:
+    字典[键]=值对象 
+    d['birthday']=(2001,1) #添加
+    d['age']=16 d['age']=17#修改  
+13.删除字典元素del语句:del字典[键]

@@ -1,0 +1,76 @@
+{% extends base.html %}
+
+{% block title %}
+  注册
+{% end %}
+
+
+{% block css %}
+  
+{% end %}
+  
+
+{% block body %}
+<form action="/register" method="post" enctype="multipart/form-data">
+  <p>
+    用户名:
+    <input type="text" name="uname">
+  </p>
+  <span id="ett"></span>
+  <p>
+    密码:
+    <input type="password" name="upwd" id="">
+  </p>
+  <p>
+    头像:
+    <input type="file" name="avatar" id="">
+  </p>
+  <p>
+    城市:
+    <select name="ucity" id="">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="成都">成都</option>
+      <option value="香港">香港</option>
+    </select>
+  </p>
+  {% if msg %}
+    <p>
+      {{msg}}
+    </p>
+  {% end %}
+  <p>
+    <input type="submit" value="注册">
+    <input type="reset" value="重置">
+  </p>
+</form>
+<script src="static/js/jquery-3.2.1.js"></script>
+<script>
+  $(function(){
+    var inputuname = $("[name='uname']");
+    var spanname = $('#ett');
+    inputuname.blur(function(){
+      var name = inputuname.val();
+      $.ajax({
+        url:'/check',
+        data:{'uname':name},
+        type:'post',
+        dataType:'json',
+        async:true,
+        success:function(data){
+          if(data.msg=='fail'){
+            spanname.text('该用户名已存在');
+          }else{
+            spanname.text('')
+          }
+        },
+        error:function(error){
+          console.log('错误信息',error);
+        }
+      });
+    });
+  });
+</script>
+{% end %}
+  
+    

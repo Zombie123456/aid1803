@@ -1,0 +1,94 @@
+1.什么是运维
+  1.服务器的运行维护
+2.名词
+  1.IDC(互联网的数据中心)
+    服务器的租用,托管,机柜的租用
+  2.虚拟化
+    VSphere--ESXI
+  3.负载均衡
+    1.轮询
+    2.IP地址
+    3.权重
+  4.CDN
+    网络分发
+  5.监控软件
+    1.nagios
+    2.zabbix
+3.常用Linux系统
+  1.RedHat
+  2.CentOS
+  3.Ubuntu
+4.linux常用命令
+  1.ifconfig
+    查看本机的IP地址和网卡(MAC)地址
+  2.ping IP地址/域名 -c 指定连接次数
+  3.nslookup 域名
+    解析域名的IP地址
+  4.重启网卡
+    sudo /etc/init.d/networking restart
+  5.top
+    linux下的任务管理器
+  6.ps -aux | grep "mysql"
+    显示系统进程的命令
+    管道grep 可以用模糊匹配
+  7.kill 
+    杀死某个进程
+    sudo kill 进程pid号
+  8.ssh
+    远程连接到服务器
+    ssh 用户名@IP地址
+  9.scp
+    远程复制文件/目录
+    scp 文件名 用户名@IP地址:绝对路径
+  10.wc -l
+    统计文件的行数
+    wc -l /etc/passwd
+  11.sort
+    对文件中内容排序
+    sort 文件名
+  12.uniq -c
+    去除重复行(只会检查相邻行),并统计每行出现的次数
+    sort 文件名|uniq -c 
+5.运维工具
+  1.xshell
+    软件,安装在windows,用于远程连接
+  2.使用方法
+    文件-新建
+  3.windows和Linux互传
+    1.安装lrzsz
+      sudo apt-get install lrzsz
+    2.windows->linux
+      rz
+    3.LINUX->windows
+      sz 文件名
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
